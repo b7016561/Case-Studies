@@ -1,4 +1,4 @@
-﻿USE CaseStudiesDB
+﻿USE [Database]
 GO
 -- User Table Insert
 INSERT INTO  [dbo].[User] ([UserName], [FirstName], [LastName], [Email], [UserPassword], [AccountType])
