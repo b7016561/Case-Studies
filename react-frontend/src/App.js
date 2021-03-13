@@ -23,7 +23,7 @@ function App() {
       </header>
       <BrowserRouter>
 
-        <Route
+        <Route exact path="/login"
         render = {props => ( <Login {...props} />)}
         >
         </Route>

@@ -1,6 +1,4 @@
-import React, {useState, Component} from 'react';
-
-import axios from 'axios'
+import React, {useState} from 'react';
 
 export default function Login(props) {
 
@@ -18,7 +16,7 @@ export default function Login(props) {
             body: JSON.stringify(user)
         })
         .then((response) => {   
-            if(response.status == 200) { props.history.push("catalogue")}
+            if(response.status == 200) { props.history.push("catalogue") }
             else(alert("Incorrect Login Details!"))
         })
         .catch(err => console.log(err))
