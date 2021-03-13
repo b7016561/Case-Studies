@@ -1,4 +1,4 @@
-﻿using API.Helpers.Database;
+using API.Helpers.Database;
 using API.Models;
 using API.OAuth;
 using Microsoft.AspNetCore.Mvc;

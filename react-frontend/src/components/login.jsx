@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+import axios from 'axios'
 
 export default function Login() {
 
@@ -9,14 +10,10 @@ export default function Login() {
     function onSubmit(event) {
 
         event.preventDefault()
-
-        console.log(user);
-        fetch('https://localhost:5001/user/login', {
+        fetch('user/login', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': "*"
             },
             body: JSON.stringify(user)
         })
