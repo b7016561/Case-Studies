@@ -1,11 +1,15 @@
 import logo from './logo.svg';
+import React, { Component } from 'react';
+import {BrowserRouter, Route } from 'react-router-dom' ;
 import './App.css';
 import Login from './components/login';
+
 function App() {
+
+ 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -17,11 +21,25 @@ function App() {
         >
         </a>
       </header>
+      <BrowserRouter>
 
+        <Route
+        render = {props => ( <Login {...props} />)}
+        >
+        </Route>
 
-      <Login />
+        {/*<Route exact path="/catalogue"
+        render = {props => (
+          <Catalogue {...props} /> 
+        )}
+        </Route>
+        */}
+        
+        
+      </BrowserRouter>
     </div>
   );
+
 }
 
 export default App;

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, Component} from 'react';
 
 import axios from 'axios'
 
-export default function Login() {
+export default function Login(props) {
 
     // login obj
     const [user, setUser] = useState({});
@@ -17,9 +17,11 @@ export default function Login() {
             },
             body: JSON.stringify(user)
         })
-        .then(res => console.log(res))
+        .then((response) => {   
+            if(response.status == 200) { props.history.push("catalogue")}
+            else(alert("Incorrect Login Details!"))
+        })
         .catch(err => console.log(err))
-
     }
 
     return (
