@@ -1,31 +1,34 @@
-﻿using API.Models;
-using Dapper;
+﻿using API.Helpers.Database;
+using API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Data;
+using System.Threading.Tasks;
 
 namespace API.Controllers
 {
     [ApiController]
+    [Authorize(policy: "User")]
     [Route("[controller]")]
     public class CatalogItemController: ControllerBase
     {
         private readonly ILogger<CatalogItemController> _logger;
-        private readonly IDbConnection _connection;
+        private readonly IStoredProcedureExecutor _sprExecutor;
 
-        public CatalogItemController(ILogger<CatalogItemController> logger, IDbConnection connection)
+        public CatalogItemController(ILogger<CatalogItemController> logger, IStoredProcedureExecutor sprExecutor)
         {
             _logger = logger;
-            _connection = connection;
+            _sprExecutor = sprExecutor;
         }
 
         [HttpGet]
-        public IEnumerable<CatalogItem> Get()
+        public async Task<IActionResult> Get()
         {
             _logger.LogInformation("Get Catalog Items");
 
-            return _connection.Query<CatalogItem>("sprGetItems", commandType: CommandType.StoredProcedure);
+            var items = await _sprExecutor.Query<CatalogItem>("sprGetItems");
+            
+            return Ok(items);
         }
     }
 }
