@@ -29,7 +29,7 @@ export default function CatalogueItem(props) {
             body: item.id
         })
         .then((response) => {
-            if(response.status == 200) { setRequested("Quote Requested!") }
+            if(response.status === 200) { setRequested("Quote Requested!") }
             else { setRequested("Quote Not Requested!") } 
         })
         .catch(err => console.log(err))  
