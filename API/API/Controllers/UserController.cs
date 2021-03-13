@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("user")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -23,18 +23,18 @@ namespace API.Controllers
             _connection = connection;
         }
 
-        [HttpPost]
-        public User Post(LoginRequest loginRequest)
-        {
-            _logger.LogInformation("Login");
+    
+       [HttpPost]
+       [Route("login")]
+       public User Post([FromBody]LoginRequest loginRequest)
+       {
+            Console.WriteLine("PING");
 
+           _logger.LogInformation("Login");
             var user = _connection.QuerySingleOrDefault<User>("sprGetUser", new { username = loginRequest.Username, password = loginRequest.Password }, commandType: CommandType.StoredProcedure);
 
-            if (user is null)
-            {
-                // Return error response
-            }
             return user;
-        }
+
+       }
     }
 }
