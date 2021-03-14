@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom' ;
 import './App.css';
-import Catalogue from './Pages/Catalog'
+import Catalogue from './Pages/Catalog';
 import Login from './components/login';
 import Catalog from './Pages/Catalog';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +12,7 @@ function App() {
  
   return (
     <div className="App">
-   { /*  <header className="App-header">
+     <header className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -23,12 +23,13 @@ function App() {
           rel="noopener noreferrer"
         >
         </a>
-      </header>*/}
-     <BrowserRouter>{/*}
-        <Route
+      </header>
+      <BrowserRouter>
+
+        <Route exact path="/login"
         render = {props => ( <Login {...props} />)}
         >
-     </Route>*/}
+     </Route>
 
         <Route exact path="/catalogue"><Catalog/></Route>
         
