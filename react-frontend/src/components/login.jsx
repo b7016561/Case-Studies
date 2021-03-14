@@ -18,10 +18,9 @@ export default function Login(props) {
             body: JSON.stringify(user)
         })
         .then((response) => {   
-            if(response.status == 200) { props.history.push("catalogue")}
+            if(response.status == 200) { props.history.push("catalogue");  response.json().then((data => localStorage.setItem('token', data.token)))}
             else(alert("Incorrect Login Details!"))
-        })
-        .catch(err => console.log(err))
+        }).catch(err => console.log(err))
     }
 
     return (
