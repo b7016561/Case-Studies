@@ -4,6 +4,7 @@ import Product from '../components/Product';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import CatalogueItem from '../components/catalogue-components/catalogue-item'
 
 class Catalog extends Component {
 
@@ -11,34 +12,34 @@ class Catalog extends Component {
         super();
         this.state = {
             items: [],
-            product: {}
+            product: []
         }
 
-        this.sendProduct = this.sendProduct.bind(this);
+        this.setProduct = this.setProduct.bind(this);
     }
 
     componentDidMount() {
         axios.get('/CatalogItem').then((res) => {
             this.setState({ 'items': res.data });
-            console.log(this.state.items);
         })
     }
 
-    sendProduct(props) {
-
-        this.setState({'product': props});
-
-
+    async setProduct(props) {
+       await this.setState({'product': props})
+      
+        console.log(this.state.product);
     }
+
+    
 
     render() {
         const tickets = this.state.items;
         const items = [];
-
+      
         for (const [index, value] of tickets.entries()) {
             items.push(
                 <Col xs={3}>
-                    <Product key={index} sendProduct={this.sendProduct} productValue={value}></Product>
+                    <Product key={index} sendProduct={this.setProduct} productValue={value}></Product>
                 </Col>
             );
         }
@@ -50,8 +51,8 @@ class Catalog extends Component {
                     {items}
                 </Row>
 
-
                 <CatalogueItem {...this.state.product}/>
+
             </div>
         )
     }

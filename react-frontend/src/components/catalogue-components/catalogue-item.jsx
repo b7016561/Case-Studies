@@ -17,6 +17,7 @@ export default function CatalogueItem(props) {
         // setting current item
         const item = props;
         setItem(item)
+
     },[])
     
     function RequestQuote() {

@@ -7,12 +7,15 @@ export default function Product(props) {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        setProduct(props);
-    },[])
+
+        setProduct(props.productValue);
+
+    },[props.id])
 
 
     function sendProduct() {
 
+        props.sendProduct(product);
 
     }
         return (
