@@ -19,10 +19,13 @@ class Catalog extends Component {
     }
 
     componentDidMount() {
-        axios.get('/CatalogItem').then((res) => {
+        axios.get('/CatalogItem',{headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }}).then((res) => {
             this.setState({ 'items': res.data });
-        })
-    }
+    })}
+    
 
     async setProduct(props) {
        await this.setState({'product': props})

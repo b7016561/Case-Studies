@@ -35,6 +35,7 @@ export default function CatalogueItem(props) {
         axios.get(`CatalogItem/${id}`,{
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
         })
         .then((response) => {setItem(response.data)})
