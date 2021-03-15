@@ -5,6 +5,7 @@ import './App.css';
 import Catalogue from './Pages/Catalog';
 import Login from './components/login';
 import Catalog from './Pages/Catalog';
+import CatalogueItem from './Pages/CatalogueItem'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -33,7 +34,10 @@ function App() {
 
         <Route exact path="/catalogue"><Catalog/></Route>
         
-        
+        <Route exact path="/catalogueItem"
+        render = {props => ( <CatalogueItem {...props} />)}
+        >
+     </Route>        
         
       </BrowserRouter>
     </div>

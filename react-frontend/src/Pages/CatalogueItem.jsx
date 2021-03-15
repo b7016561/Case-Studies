@@ -5,6 +5,7 @@ export default function CatalogueItem(props) {
     // login obj
     const [item, setItem] = useState({});
     const [requested, setRequested] = useState("");
+
  
     useEffect(() => {
         /*const item = {
@@ -17,7 +18,6 @@ export default function CatalogueItem(props) {
         // setting current item
         const item = props;
         setItem(item)
-
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
@@ -37,7 +37,7 @@ export default function CatalogueItem(props) {
                 'Content-Type': 'application/json',
             },
         })
-        .then((response) => {setItem(response.data);})
+        .then((response) => {setItem(response.data)})
         .catch(err => console.log(err))
         alert(id);
 

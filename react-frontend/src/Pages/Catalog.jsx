@@ -4,7 +4,7 @@ import Product from '../components/Product';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import CatalogueItem from '../components/catalogue-components/catalogue-item'
+import CatalogueItem from './CatalogueItem'
 
 class Catalog extends Component {
 
@@ -26,7 +26,7 @@ class Catalog extends Component {
 
     async setProduct(props) {
        await this.setState({'product': props})
-      
+        document.location.href = `catalogueItem?id=${this.state.product.id}`
         console.log(this.state.product);
     }
 
@@ -50,9 +50,6 @@ class Catalog extends Component {
                 <Row className="justify-content-center">
                     {items}
                 </Row>
-
-                <CatalogueItem {...this.state.product}/>
-
             </div>
         )
     }
