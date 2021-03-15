@@ -2,9 +2,9 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom' ;
 import './App.css';
-import Catalogue from './Pages/Catalog';
+import Catalogue from './Pages/Catalogue';
 import Login from './components/login';
-import Catalog from './Pages/Catalog';
+import CatalogueItem from './Pages/CatalogueItem'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -27,11 +27,17 @@ function App() {
       <BrowserRouter>
 
         <Route exact path="/login"
-        render = {props => ( <Login {...props} />)}
-        >
-     </Route>
+        render = {props => ( <Login {...props} /> )}
+        ></Route>
 
-        <Route exact path="/catalogue"><Catalog/></Route>
+        <Route exact path="/catalogue"
+        render = {props => ( <Catalogue {...props} /> )}
+        ></Route>
+
+        <Route exact path="/catalogueItem" 
+        render = {props => ( <CatalogueItem {...props}/>)}
+        ></Route>
+
         
         
         

@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-
+import axios from 'axios';
 export default function CatalogueItem(props) {
 
     // login obj
     const [item, setItem] = useState({});
     const [requested, setRequested] = useState("");
+
  
     useEffect(() => {
         /*const item = {
@@ -17,6 +18,29 @@ export default function CatalogueItem(props) {
         // setting current item
         const item = props;
         setItem(item)
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+       /* fetch('CatalogItem/product', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => {   
+
+            console.log(response)
+          
+        }).catch(err => console.log(err))*/
+        axios.post('/CatalogItem/product',{ItemID: id},{
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+        })
+        .then((response) => {console.log(response)})
+        .catch(err => console.log(err))
+        alert(id);
 
     },[])
     
