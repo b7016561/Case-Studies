@@ -36,7 +36,14 @@ namespace API.Controllers
             {
                 return Unauthorized(new { error = "Invalid Login Credentials" });
             }
-            return Ok(new { token = _jwtTokenBuilder.Build(user.Username, user.AccountType.ToString()) });
+
+            var response = new 
+            { 
+                user,
+                token = _jwtTokenBuilder.Build(user.Username, user.AccountType.ToString())
+            };
+
+            return Ok(response);
         }
     }
 }
