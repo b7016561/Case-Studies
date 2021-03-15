@@ -7,14 +7,14 @@ export default function Product(props) {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-
+        console.log("cunt"+props.productValue);
         setProduct(props.productValue);
-
+        
     },[props.id])
 
 
     function sendProduct() {
-
+        
         props.sendProduct(product);
 
     }
