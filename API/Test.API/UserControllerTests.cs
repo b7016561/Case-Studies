@@ -37,9 +37,9 @@ namespace Test.API
                 .Setup(mock => mock.QuerySingleOrDefault<User>(It.IsAny<string>(), It.IsAny<object>()))
                 .Returns(Task.FromResult(user));
 
-            // Action
             var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
 
+            // Action
             var loginRequest = new LoginRequest()
             {
                 Username = "username",
@@ -63,16 +63,16 @@ namespace Test.API
         }
 
         [Fact]
-        public async void WhenStoredProcedureReturnsNull_ThenStatus401IsReturned()
+        public async void WhenTheLoginMethodIsCalled_AndTheStoredProcedureReturnsNull_ThenStatus401IsReturned()
         {
             // Setup
             _sprExecutorMock
                 .Setup(mock => mock.QuerySingleOrDefault<User>(It.IsAny<string>(), It.IsAny<object>()))
                 .Returns(Task.FromResult<User>(null));
 
-            // Action
             var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
 
+            // Action
             var loginRequest = new LoginRequest()
             {
                 Username = "username",
@@ -85,7 +85,7 @@ namespace Test.API
         }
 
         [Fact]
-        public async void WhenStoredProcedureReturnsAResult_ThenStatus200IsReturned()
+        public async void WhenTheLoginMethodIsCalled_AndTheStoredProcedureReturnsAResult_ThenStatus200IsReturned()
         {
             // Setup
             var user = new User()
@@ -97,9 +97,9 @@ namespace Test.API
                 .Setup(mock => mock.QuerySingleOrDefault<User>(It.IsAny<string>(), It.IsAny<object>()))
                 .Returns(Task.FromResult(user));
 
-            // Action
             var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
 
+            // Action
             var loginRequest = new LoginRequest()
             {
                 Username = "username",

@@ -3,6 +3,7 @@ using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -17,8 +18,8 @@ namespace API.Controllers
 
         public CatalogItemController(ILogger<CatalogItemController> logger, IStoredProcedureExecutor sprExecutor)
         {
-            _logger = logger;
-            _sprExecutor = sprExecutor;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _sprExecutor = sprExecutor ?? throw new ArgumentNullException(nameof(sprExecutor));
         }
 
         [HttpGet]
@@ -26,8 +27,10 @@ namespace API.Controllers
         {
             _logger.LogInformation("Get Catalog Items");
 
+            // Execute stored procedure
             var items = await _sprExecutor.Query<CatalogItem>("sprGetItems");
 
+            // Return items with status 200
             return Ok(items);
         }
 
@@ -35,15 +38,20 @@ namespace API.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            _logger.LogInformation("Get Catalog Items");
+            _logger.LogInformation($"Get Catalog Item: {id}");
+
+            // Build query parameters
             var param = new { itemID = id };
 
+            // Execute stored procedure
             var item = await _sprExecutor.QuerySingleOrDefault<CatalogItem>("sprGetItem", param);
 
             if (item is null)
             {
-                return Unauthorized(new { error = "Invalid Item ID" });
+                // Return error with status 400
+                return BadRequest(new { error = "Invalid Item ID" });
             }
+            // Return item with status 200
             return Ok(item);
         }
     }
