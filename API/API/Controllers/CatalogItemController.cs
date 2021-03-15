@@ -10,7 +10,7 @@ namespace API.Controllers
     [ApiController]
     [Authorize(policy: "User")]
     [Route("[controller]")]
-    public class CatalogItemController: ControllerBase
+    public class CatalogItemController : ControllerBase
     {
         private readonly ILogger<CatalogItemController> _logger;
         private readonly IStoredProcedureExecutor _sprExecutor;
@@ -27,8 +27,24 @@ namespace API.Controllers
             _logger.LogInformation("Get Catalog Items");
 
             var items = await _sprExecutor.Query<CatalogItem>("sprGetItems");
-            
+
             return Ok(items);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            _logger.LogInformation("Get Catalog Items");
+            var param = new { itemID = id };
+
+            var item = await _sprExecutor.QuerySingleOrDefault<CatalogItem>("sprGetItem", param);
+
+            if (item is null)
+            {
+                return Unauthorized(new { error = "Invalid Item ID" });
+            }
+            return Ok(item);
         }
     }
 }
