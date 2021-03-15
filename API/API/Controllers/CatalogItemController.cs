@@ -41,7 +41,7 @@ namespace API.Controllers
             _logger.LogInformation("Get Catalog Item");
             var param = new { itemID = id };
             var item = await _sprExecutor.QuerySingleOrDefault<CatalogItem>("sprGetItem", param);
-
+            Console.WriteLine(item);
             if (item is null)
             {
                 return Unauthorized(new { error = "Invalid item id" });
