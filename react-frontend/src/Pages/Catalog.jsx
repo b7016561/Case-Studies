@@ -19,7 +19,8 @@ class Catalog extends Component {
     }
 
     componentDidMount() {
-        axios.get('/CatalogItem',{headers: {
+        axios.get('/CatalogItem',{
+            headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         }}).then((res) => {

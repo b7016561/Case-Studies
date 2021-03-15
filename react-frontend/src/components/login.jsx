@@ -16,10 +16,20 @@ export default function Login(props) {
             body: JSON.stringify(user)
         })
             .then((response) => {
-
                 if (response.status == 200) {
-                    response.json().then((data => localStorage.setItem('token', data.token)));
-                    document.location.href = "/catalogue";
+                    response.json().then(data => {
+                        localStorage.setItem('token', data.token)
+                        switch(data.user.accountType) {
+                            case 'S':
+                                document.location.href = "quoteRequests"
+                                break;
+                            default: 
+                                document.location.href = "catalogue"
+                                break;
+                        }
+                    })
+                    console.log(response)
+                    //document.location.href = "/catalogue";
                 }
                 else (alert("Incorrect Login Details!"))
             }).catch(err => console.log(err))
