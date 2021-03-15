@@ -11,6 +11,5 @@ AS
 	FROM Item I
 	INNER JOIN SupplierItems SI ON I.ItemID = SI.ItemID
 	INNER JOIN UserSupplier US ON SI.UserName = US.UserName
-
-	WHERE @ItemID = SI.ItemID; 
+	WHERE I.ItemID = @ItemID; 
 RETURN
