@@ -8,30 +8,11 @@ export default function CatalogueItem(props) {
 
  
     useEffect(() => {
-        /*const item = {
-            id: props.Id,
-            name: props.itemName,
-            description: props.itemDescription,
-            imageURL: props.itemImageUrl,
-            cost: props.itemCost
-        }*/
-        // setting current item
         const item = props;
         setItem(item)
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
-       /* fetch('CatalogItem/product', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then((response) => {   
-
-            console.log(response)
-          
-        }).catch(err => console.log(err))*/
         axios.get(`CatalogItem/${id}`,{
             headers: {
                 'Content-Type': 'application/json',
