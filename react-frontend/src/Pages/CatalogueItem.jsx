@@ -32,11 +32,11 @@ export default function CatalogueItem(props) {
             console.log(response)
           
         }).catch(err => console.log(err))*/
-        axios.post('/CatalogItem/product',{ItemID: id},{
+        axios.get('CatalogItem/',{
             headers: {
                 'Content-Type': 'application/json',
             },
-            
+            params: {'{id}': id}            
         })
         .then((response) => {console.log(response)})
         .catch(err => console.log(err))

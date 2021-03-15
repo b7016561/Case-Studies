@@ -33,19 +33,20 @@ namespace API.Controllers
         }
 
 
-        [Route("product")]
-        [HttpPost]
-        public async Task<IActionResult> Post(GetItem Item)
+       [HttpGet]
+       [Route("{id}")]
+       public async Task<IActionResult> Get(string id)
         {
-            Console.WriteLine(Item);
-            _logger.LogInformation("Get Product Item");
-            var param = new { ItemID = Item.ItemID };
-
-            // query and return product from id
+            Console.WriteLine(id);
+            _logger.LogInformation("Get Catalog Item");
+            var param = new { itemID = id };
             var item = await _sprExecutor.QuerySingleOrDefault<CatalogItem>("sprGetItem", param);
-            Console.WriteLine(param);
-            string json = JsonSerializer.Serialize(item);
-            Console.WriteLine(json);
+
+            if (item is null)
+            {
+                return Unauthorized(new { error = "Invalid item id" });
+            }
+
             return Ok(item);
         }
     }
