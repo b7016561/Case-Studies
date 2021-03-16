@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Table} from 'react-bootstrap';
-import QuoteManager from '../components/QuoteRequest'
+import QuoteManager from '../components/QuoteRequestManager'
+import QuoteRequest from '../components/QuoteRequest';
 
 export default function QuoteRequestList(props) {
 
@@ -16,6 +17,7 @@ export default function QuoteRequestList(props) {
             }
         })
         .then((response) => {
+            console.log(response);
             setQuoteRequests(response.data);
         })
         .catch(err => console.log(err))
@@ -23,14 +25,17 @@ export default function QuoteRequestList(props) {
 
     // call back function that sets the quote request that has been selected
     function getQuoteRequest(data) {
-        setQuoteRequest(data)
+        const request = {
+            id: data.id, 
+            itemId: data.itemId, 
+            username: data.username,
+        }
+        setQuoteRequest(request)
     }
 
     return (
         <div className="Component">
-        <div>
-        
-        </div>
+            <h4>Quote Requests</h4>
         <div>                    
             <Table responsive striped bordered hover size="sm" variant="dark">
                 <thead>

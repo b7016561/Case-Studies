@@ -7,7 +7,7 @@ import Login from './components/login';
 import Catalog from './Pages/Catalog';
 import CatalogueItem from './Pages/CatalogueItem'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
+import QuoteRequestList from './Pages/QuoteRequestList';
 function App() {
 
  
@@ -30,14 +30,18 @@ function App() {
         <Route exact path="/login"
         render = {props => ( <Login {...props} />)}
         >
-     </Route>
+        </Route>
 
         <Route exact path="/catalogue"><Catalog/></Route>
         
         <Route exact path="/catalogueItem"
         render = {props => ( <CatalogueItem {...props} />)}
         >
-     </Route>        
+        </Route> 
+
+        <Route exact path="/quoteRequests"
+        render = {props => ( <QuoteRequestList {...props} />)} 
+        ></Route>      
         
       </BrowserRouter>
     </div>
