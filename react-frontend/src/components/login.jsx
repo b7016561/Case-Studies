@@ -20,8 +20,8 @@ export default function Login(props) {
                     response.json().then(data => {
                         localStorage.setItem('token', data.token)
                         switch(data.user.accountType) {
-                            case 'S':
-                                document.location.href = "quoteRequests"
+                            case 'E':
+                                document.location.href = document.location.href = "quoteRequests"
                                 break;
                             default: 
                                 document.location.href = "catalogue"
