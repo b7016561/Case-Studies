@@ -2,8 +2,8 @@
 {
     public class QuoteRequest
     {
-        public int Id { get; set; }
-        public int ItemId { get; set; }
+        public string Id { get; set; }
+        public string ItemId { get; set; }
         public string Username { get; set; }
     }
 }

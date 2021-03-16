@@ -1,4 +1,5 @@
 using API.Helpers.Database;
+using API.Models;
 using API.OAuth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -7,11 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.SQLite;
-using System.IO;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API
@@ -45,7 +44,9 @@ namespace API
             services.AddTransient<IJwtTokenBuilder>(sp => new JwtTokenBuilder());
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
                    {
                        ValidateIssuer = false,
                        ValidateAudience = false,
@@ -53,14 +54,27 @@ namespace API
                        ValidateIssuerSigningKey = true,
 
                        IssuerSigningKey = JwtTokenBuilder.JwtSecurityKey
-                   }
-               );
+                   };
+                   options.Events = new JwtBearerEvents
+                   {
+                       OnTokenValidated = context =>
+                       {
+                           // Get token
+                           var token = context.SecurityToken as JwtSecurityToken;
+                           // Add user context
+                           context.HttpContext.Items["user"] = new UserContext(token.Claims);
+
+                           return Task.CompletedTask;
+                       }
+                   };
+               });
 
             services.AddAuthorization(options => options.AddPolicy("User",
                 policy =>
                 {
                     policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireClaim("user");
+                    policy.RequireClaim("account_type");
                 })
             );
         }
