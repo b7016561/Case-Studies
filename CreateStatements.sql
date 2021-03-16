@@ -9,7 +9,7 @@ CREATE TABLE [dbo].[User] (
     CONSTRAINT Email_UNQ UNIQUE (Email)
 );
 CREATE TABLE [dbo].[Quote] (
-    QuoteID VARCHAR (15)  NOT NULL PRIMARY KEY,
+    QuoteID INT  NOT NULL IDENTITY PRIMARY KEY,
     CreationDate DATETIME  NOT NULL,
     PreferredDate DATETIME NOT NULL,
     QuoteDescription VARCHAR (MAX) NULL,
@@ -58,7 +58,7 @@ CREATE TABLE [dbo].[Address] (
 CREATE TABLE [dbo].[UserQuotes] (
     UserUN VARCHAR (20)  NOT NULL,
     SupplierUN VARCHAR (20)  NOT NULL,
-    QuoteID VARCHAR (15)  NOT NULL,
+    QuoteID INT  NOT NULL,
     CONSTRAINT FK_UserUN_UQ FOREIGN KEY (UserUN) REFERENCES [dbo].[User](UserName),
     CONSTRAINT FK_SupplierUN_UQ FOREIGN KEY (SupplierUN) REFERENCES [dbo].[User](UserName),
     CONSTRAINT FK_QuoteID_UQ FOREIGN KEY (QuoteID) REFERENCES [dbo].[Quote](QuoteID)
@@ -70,7 +70,7 @@ CREATE TABLE [dbo].[SupplierItems] (
     CONSTRAINT FK_ItemID_SI FOREIGN KEY (ItemID) REFERENCES [dbo].[Item](ItemID)
 );
 CREATE TABLE [dbo].[QuoteItems] (
-    QuoteID VARCHAR(15) NOT NULL,
+    QuoteID INT NOT NULL,
     ItemID VARCHAR(15) NOT NULL,
     CONSTRAINT FK_QuoteID_QI FOREIGN KEY (QuoteID) REFERENCES [dbo].[Quote](QuoteID),
     CONSTRAINT FK_ItemID_QI FOREIGN KEY (ItemID) REFERENCES [dbo].[Item](ItemId)
