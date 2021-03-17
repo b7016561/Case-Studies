@@ -48,9 +48,9 @@ GO
 -- Quote Table Insert 
 -- When status is pending user has requested the quote, the cost should be blank until the status is changed to Processed by the employee/supplier and the labour or delivery is then calculated
 --A third status of 'PROCESSING' could also be used 
-INSERT INTO  [dbo].[Quote] ([QuoteID], [CreationDate], [PreferredDate], [QuoteDescription], [QuoteCost], [QuoteStatus])
-VALUES ('QT001','2021-02-20 12:00:00', '2021-03-01 12:00:00', 'nwith installation', '', 'PENDING'),
-('QT002','2021-02-18 12:00:00', '2021-03-10 12:00:00', 'no installation', '1000', 'PROCESSED')
+INSERT INTO  [dbo].[Quote] ([CreationDate], [PreferredDate], [QuoteDescription], [QuoteCost], [QuoteStatus])
+VALUES ('2021-02-20 12:00:00', '2021-03-01 12:00:00', 'nwith installation', '', 'PENDING'),
+('2021-02-18 12:00:00', '2021-03-10 12:00:00', 'no installation', '1000', 'PROCESSED')
 GO
 	-- UserSupplier Table Insert
 INSERT INTO [dbo].[UserSupplier] ([UserName], [CompanyName], [CompanyReg])
@@ -74,8 +74,8 @@ VALUES ('jsmith248', '92 New Road', '', '', 'Croydon', 'South London', 'CR40 0ZH
 GO
 	-- UserQuotes Table Insert
 INSERT INTO  [dbo].[UserQuotes] ([UserUN], [SupplierUN], [QuoteID])
-VALUES ('jsmith248','djones517' ,'QT001'),
-('ldavies043', 'djones517', 'QT002')
+VALUES ('jsmith248','djones517' , '1'),
+('ldavies043', 'djones517', '2')
 
 GO
 	-- SupplierItems
@@ -89,5 +89,5 @@ VALUES ('djones517', 'ITM001'),
 GO
 	-- QuoteItems 
 INSERT INTO  [dbo].[QuoteItems] ([QuoteID], [ItemID])
-VALUES ('QT001', 'ITM004'),
-('QT002', 'ITM006')
+VALUES ('1', 'ITM004'),
+('2', 'ITM006')

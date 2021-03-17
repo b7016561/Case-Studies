@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sprGetQuote]
-	@quoteID VARCHAR(20)
+	@quoteID INT
 AS
 	SELECT
 		Q.QuoteID AS Id,
