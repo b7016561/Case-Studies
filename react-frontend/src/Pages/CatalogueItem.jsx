@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom'
 import axios from 'axios';
 export default function CatalogueItem(props) {
 
+
+    const history = useHistory();
     // login obj
     const [item, setItem] = useState({});
     const [requested, setRequested] = useState("");
@@ -19,9 +22,10 @@ export default function CatalogueItem(props) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
         })
-        .then((response) => {setItem(response.data)})
-        .catch(err => console.log(err))
-        alert(id);
+        .then((response) => {
+                setItem(response.data);
+            })  
+        .catch(err => history.push('/login'))
 
     },[])
     

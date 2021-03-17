@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {Form, Button} from 'react-bootstrap';
+// import '../App.css';
+
 
 export default function Login(props) {
 
@@ -26,35 +29,30 @@ export default function Login(props) {
     }
 
     return (
-
-        <div className='Component'>
-            <h4> Login </h4>
-            <form className='FormFields' onSubmit={onSubmit}>
-
-                <div className='FormField'>
-                    <input type='text'
-                        placeholder='Username'
-                        name="username"
-                        onChange={(event) => setUser({ ...user, username: event.target.value })} // calling event handler   
-                        defaultValue={user.username}  // global variable 
-                        className='Input'
-                    />
-                </div>
-
-                <div className='FormField'>
-                    <input type='password'
-                        placeholder='Password'
-                        name="password"
-                        onChange={(event) => setUser({ ...user, password: event.target.value })} // calling event handler
-                        defaultValue={user.password} // global variable
-                        className='Input'
-                    />
-                </div>
-
-                <input type='submit' className='Button' value='Submit'></input>
-            </form>
-
-        </div>
+        <div className="Login">
+        <Form onSubmit={onSubmit}>
+          <Form.Group size="lg" controlId="Username">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              autoFocus
+              type="text"
+              onChange={(event) => setUser({ ...user, username: event.target.value })} // calling event handler   
+              defaultValue={user.username}  // global variable 
+            />
+          </Form.Group>
+          <Form.Group size="lg" controlId="Password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              onChange={(event) => setUser({ ...user, password: event.target.value })} // calling event handler   
+              defaultValue={user.password}  // global variable 
+            />
+          </Form.Group>
+          <Button block size="lg" type="submit">
+            Login
+        </Button>
+        </Form>
+      </div>
     )
 
 }

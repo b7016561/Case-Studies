@@ -19,26 +19,30 @@ class Catalog extends Component {
     }
 
     componentDidMount() {
-        axios.get('/CatalogItem',{headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }}).then((res) => {
+        let { history } = this.props;
+        axios.get('/CatalogItem', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then((res) => {
             this.setState({ 'items': res.data });
-    })}
-    
+        }).catch()
+    }
+
 
     async setProduct(props) {
-       await this.setState({'product': props})
+        await this.setState({ 'product': props })
         document.location.href = `catalogueItem?id=${this.state.product.id}`
         console.log(this.state.product);
     }
 
-    
+
 
     render() {
         const tickets = this.state.items;
         const items = [];
-      
+
         for (const [index, value] of tickets.entries()) {
             items.push(
                 <Col xs={3}>
@@ -46,11 +50,17 @@ class Catalog extends Component {
                 </Col>
             );
         }
-        
+
         return (
-            
+
             <div>
                 <Row className="justify-content-center">
+                    <Col xs={3}>
+                        <Card style={{ width: "100%", margin: "15px", minHeight:"90%"}} border="secondary">
+                            <Card.Header>ABC Catalog</Card.Header>
+                            <Card.Body>Please choose your desired item and request a quote !</Card.Body>
+                        </Card>
+                    </Col>
                     {items}
                 </Row>
             </div>

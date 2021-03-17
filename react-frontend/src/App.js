@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom' ;
-import './App.css';
-import Catalogue from './Pages/Catalog';
+import './App.scss';
 import Login from './components/login';
+import Home from './Pages/Home';
 import Catalog from './Pages/Catalog';
 import CatalogueItem from './Pages/CatalogueItem'
+import Nav from './components/Nav'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -13,20 +13,9 @@ function App() {
  
   return (
     <div className="App">
-     <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
+      <Nav/>
       <BrowserRouter>
-
+        <Route exact path="/home"><Home/></Route>
         <Route exact path="/login"
         render = {props => ( <Login {...props} />)}
         >
