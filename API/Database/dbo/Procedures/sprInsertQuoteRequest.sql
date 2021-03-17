@@ -15,4 +15,6 @@ AS
 
 	INSERT INTO QuoteItems (QuoteID, ItemID)
 	VALUES (@quoteID, @itemID)
+
+	SELECT @quoteID
 RETURN

@@ -66,7 +66,7 @@ namespace Test.API
             var controller = new QuoteController(_logger, _sprExecutorMock.Object);
 
             // Action
-            var id = "testId";
+            var id = 1;
 
             var result = await controller.Get(id);
 
@@ -92,7 +92,7 @@ namespace Test.API
             var controller = new QuoteController(_logger, _sprExecutorMock.Object);
 
             // Action
-            var result = await controller.Get("testId");
+            var result = await controller.Get(1);
 
             // Verify 
             Assert.Equal(400, (result as ObjectResult)?.StatusCode);
@@ -109,7 +109,7 @@ namespace Test.API
             var controller = new QuoteController(_logger, _sprExecutorMock.Object);
 
             // Action
-            var result = await controller.Get("testId");
+            var result = await controller.Get(1);
 
             // Verify 
             Assert.Equal(200, (result as ObjectResult)?.StatusCode);

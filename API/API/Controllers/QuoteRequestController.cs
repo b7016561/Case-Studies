@@ -53,7 +53,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> Get(int id)
         {
             _logger.LogInformation($"Get Quote Request: {id}");
 
@@ -91,8 +91,8 @@ namespace API.Controllers
                 // Execute stored procedure
                 quoteRequest.Id = await _sprExecutor.Execute("sprInsertQuoteRequest", param);
 
-                // Return quote request with status 200
-                return Ok(quoteRequest);
+                // Get quote request by id and return
+                return await Get(quoteRequest.Id);
             }
             catch (Exception)
             {

@@ -21,6 +21,6 @@ namespace API.Helpers.Database
             _connection.QueryAsync<T>(storedProcedure, param, commandType: CommandType.StoredProcedure);
 
         public Task<int> Execute(string storedProcedure, object param = null) =>
-            _connection.ExecuteAsync(storedProcedure, param, commandType: CommandType.StoredProcedure);
+            _connection.ExecuteScalarAsync<int>(storedProcedure, param, commandType: CommandType.StoredProcedure);
     }
 }
