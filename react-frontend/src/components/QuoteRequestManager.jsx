@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect, useRef} from 'react';
-
+import {Form, Button} from 'react-bootstrap';
 export default function QuoteRequestManager(props) {
 
     const [request, setRequest] = useState({});
@@ -17,7 +17,7 @@ export default function QuoteRequestManager(props) {
         //console.log(request)
         const itemId = props.itemId;
 
-        console.log("itemID" + itemId);
+        //console.log("itemID" + itemId);
         axios.get(`CatalogItem/${itemId}`,{
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export default function QuoteRequestManager(props) {
             },
         })
         .then((response) => {
-            console.log(response)
+            //console.log(response)
             setItem(response.data)
         })
         .catch(err => console.log(err))        
@@ -46,8 +46,8 @@ export default function QuoteRequestManager(props) {
     },[props.id]) // effect is only called when the request id changes
 
 
-      function handleClick() {
-         
+      function onSubmit(event) {
+         event.preventDefault(); // stopping form refreshing page.
 
         const quote = {
             id: request.id,
@@ -57,7 +57,7 @@ export default function QuoteRequestManager(props) {
             description: description
         }
        
-        console.log(quote);
+        //console.log(quote);
        
         fetch('quote', {
             method: "POST",
@@ -104,34 +104,36 @@ export default function QuoteRequestManager(props) {
                 <p className="">Supplier: <span className="QuoteValue"> {item.supplierName} </span></p>
 
             </div>
-            <div>
-                <h4>Create Quote</h4>  
+            <div className="Login">
 
-                    {/*<p className="">Id: <span className="QuoteValue"> {request.id} </span></p>*/}
-                   {/*} <p className="">ItemId: <span className="QuoteValue"> {request.itemId} </span></p>*/}
-                    {/*<p className="">Request Username: <span className="QuoteValue"> {request.username} </span></p>*/}
+                <Form onSubmit={onSubmit}>
+                    <h4>Create Quote</h4>
 
-                    <input type='text'
-                    placeholder='total cost'
-                    name="totalCost"
-                    onChange={(e) => setCost(e.target.value)} // calling state handler and passing text value
-                    defaultValue={cost}  // state variable 
-                    className='Input'
-                    />
+                    <Form.Group size="lg" controlId="Username">
+                        <Form.Label>Cost</Form.Label>
+                        <Form.Control
+                        type="text"
+                        onChange={(event) => setCost(event.target.value)} // calling event handler   
+                        defaultValue={cost}  // global variable 
+                        />
+                    </Form.Group>
 
-                    <input type='text'
-                    placeholder='description'
-                    name="description"
-                    onChange={(e) => setDescription(e.target.value)} // calling state handler and passing text value
-                    defaultValue={description}  // state variable 
-                    className='Input'
-                    />
+                    <Form.Group size="lg" controlId="Password">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                        type="text"
+                        onChange={(event) => setDescription(event.target.value)} // calling event handler   
+                        defaultValue={description}  // global variable 
+                        />
+                    </Form.Group>
 
-                    <button
-                    onClick={handleClick}
-                    >Create Quote
-                    </button>
+                    <Button block size="lg" type="submit">
+                    Send
+                    </Button>
+
+                </Form>
             </div>
-        </div>
+      </div>
+
     ); 
 }

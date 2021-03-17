@@ -43,6 +43,7 @@ export default function QuoteRequestList(props) {
                         <th>ID</th>
                         <th>ItemID</th>
                         <th>Request Sender</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
