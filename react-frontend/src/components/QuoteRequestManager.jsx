@@ -3,10 +3,9 @@ import React, {useState, useEffect, useRef} from 'react';
 
 export default function QuoteRequestManager(props) {
 
-    // store a reference to the input on DOM
-
     const [request, setRequest] = useState({});
-    const [quote, setQuote] = useState({});
+    const [description, setDescription] = useState();
+    const [cost, setCost] = useState("");
     const [item, setItem] = useState({});
 
 
@@ -49,13 +48,19 @@ export default function QuoteRequestManager(props) {
 
       function handleClick() {
          
-        setQuote({...quote,
+
+        const quote = {
+            id: request.id,
             itemId: request.itemId,
             username: request.username,
-        })
+            totalCost: parseInt(cost),
+            description: description
+        }
        
-        axios.post('quote', {
-            method: 'POST',
+        console.log(quote);
+       
+        fetch('quote', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -67,6 +72,17 @@ export default function QuoteRequestManager(props) {
             else { alert("Quote Not Created!")}
 
         }).catch(err =>  console.log(err))
+        /*axios.post('quote', {
+            headers: {
+               
+            },
+            data: JSON.stringify(quote)
+        }).then((res) => {
+
+            if(res.status == 200) { alert("Quote Created")}
+            else { alert("Quote Not Created!")}
+
+        }).catch(err =>  console.log(err))*/
    }
 
     // Access handler, this will render action buttons depending on account type and ticket status
@@ -85,29 +101,29 @@ export default function QuoteRequestManager(props) {
                 <p className="">Item Name: <span className="QuoteValue"> {item.name} </span></p>
                 <p className="">Cost: <span className="QuoteValue"> {item.description} </span></p>
                 <p className="">Description: <span className="QuoteValue"> {item.cost} </span></p>
-                <p className="">Supplier Name: <span className="QuoteValue"> {item.supplierName} </span></p>
+                <p className="">Supplier: <span className="QuoteValue"> {item.supplierName} </span></p>
 
             </div>
             <div>
-                <h4>Quote Manager</h4>  
+                <h4>Create Quote</h4>  
 
-                    <p className="">Id: <span className="QuoteValue"> {request.id} </span></p>
-                    <p className="">ItemId: <span className="QuoteValue"> {request.itemId} </span></p>
-                    <p className="">Request Username: <span className="QuoteValue"> {request.username} </span></p>
+                    {/*<p className="">Id: <span className="QuoteValue"> {request.id} </span></p>*/}
+                   {/*} <p className="">ItemId: <span className="QuoteValue"> {request.itemId} </span></p>*/}
+                    {/*<p className="">Request Username: <span className="QuoteValue"> {request.username} </span></p>*/}
 
                     <input type='text'
                     placeholder='total cost'
                     name="totalCost"
-                    onChange={(e) => setQuote({...quote, totalCost: e.target.value})} // calling state handler and passing text value
-                    defaultValue={quote.totalCost}  // state variable 
+                    onChange={(e) => setCost(e.target.value)} // calling state handler and passing text value
+                    defaultValue={cost}  // state variable 
                     className='Input'
                     />
 
                     <input type='text'
                     placeholder='description'
                     name="description"
-                    onChange={(e) => setQuote({...quote, description: e.target.value})} // calling state handler and passing text value
-                    defaultValue={quote.description}  // state variable 
+                    onChange={(e) => setDescription(e.target.value)} // calling state handler and passing text value
+                    defaultValue={description}  // state variable 
                     className='Input'
                     />
 
