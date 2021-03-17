@@ -13,6 +13,7 @@ const QuoteRequest = (props) => {
          <td><span onClick={handleClick}><code>{props.id}</code></span></td>
          <td>{props.itemId}</td>
          <td>{props.username}</td>
+         <td>{props.status}</td>
     </tr>
   );
 };
