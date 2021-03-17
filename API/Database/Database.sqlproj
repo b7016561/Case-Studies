@@ -77,12 +77,15 @@
     <Build Include="dbo\Procedures\sprGetItem.sql" />
     <Build Include="dbo\Procedures\sprGetQuote.sql" />
     <Build Include="dbo\Procedures\sprGetSupplierItems.sql" />
-    <Build Include="dbo\Procedures\sprGetSupplierQuotes.sql" />
     <Build Include="dbo\Procedures\sprGetUserQuotes.sql" />
     <Build Include="dbo\Procedures\sprInsertItem.sql" />
     <Build Include="dbo\Procedures\sprInsertQuote.sql" />
     <Build Include="dbo\Procedures\sprGetItems.sql" />
     <Build Include="dbo\Procedures\sprGetQuotes.sql" />
+    <Build Include="dbo\Procedures\sprGetQuoteRequests.sql" />
+    <Build Include="dbo\Procedures\sprGetQuoteRequestsForUser.sql" />
+    <Build Include="dbo\Procedures\sprGetQuoteRequest.sql" />
+    <Build Include="dbo\Procedures\sprInsertQuoteRequest.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertStatements.sql" />

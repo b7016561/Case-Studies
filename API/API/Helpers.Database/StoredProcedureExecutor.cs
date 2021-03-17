@@ -16,7 +16,11 @@ namespace API.Helpers.Database
 
         public Task<T> QuerySingleOrDefault<T>(string storedProcedure, object param = null) =>
             _connection.QuerySingleOrDefaultAsync<T>(storedProcedure, param, commandType: CommandType.StoredProcedure);
+        
         public Task<IEnumerable<T>> Query<T>(string storedProcedure, object param = null) =>
             _connection.QueryAsync<T>(storedProcedure, param, commandType: CommandType.StoredProcedure);
+
+        public Task<int> Execute(string storedProcedure, object param = null) =>
+            _connection.ExecuteAsync(storedProcedure, param, commandType: CommandType.StoredProcedure);
     }
 }

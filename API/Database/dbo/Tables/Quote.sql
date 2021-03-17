@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Quote] (
-    QuoteID VARCHAR (15)  NOT NULL PRIMARY KEY,
+    QuoteID INT  NOT NULL IDENTITY PRIMARY KEY,
     CreationDate DATETIME  NOT NULL,
     PreferredDate DATETIME NOT NULL,
     QuoteDescription VARCHAR (MAX) NULL,

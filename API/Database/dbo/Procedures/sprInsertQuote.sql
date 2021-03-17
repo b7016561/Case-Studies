@@ -1,16 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[sprInsertQuote]
-	@quoteID VARCHAR(20),
-	@creationDate DATETIME,
-	@preferredDate DATETIME,
+	@quoteID INT,
 	@quoteDesc VARCHAR(MAX),
-	@quoteCost FLOAT,
-	@quoteStatus VARCHAR(20),
-	@userUN VARCHAR(20),
-	@supplierUN VARCHAR(20)
+	@quoteCost FLOAT
 AS
-	INSERT INTO [Quote] (QuoteID, CreationDate, PreferredDate, QuoteDescription, QuoteCost, QuoteStatus)
-	VALUES (@quoteID, @creationDate, @preferredDate, @quoteDesc, @quoteCost, @quoteStatus)
-	-- May need GO separators
-	INSERT INTO [UserQuotes] (UserUN, SupplierUN, QuoteID)
-	VALUES (@userUN, @supplierUN, @quoteID)
+	UPDATE Quote 
+	SET 
+		QuoteDescription = @quoteDesc, 
+		QuoteCost = @quoteCost, 
+		QuoteStatus = 'PROCESSED'
+	WHERE QuoteID = @quoteID
 RETURN
