@@ -62,10 +62,30 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public Quote Post(Quote quote)
+        public async Task<IActionResult> Post(Quote quote)
         {
-            _logger.LogInformation($"Create Quote: {quote}");
-            return null;
+            _logger.LogInformation("Create Quote");
+
+            // Build query parameters
+            var param = new
+            {
+                quoteID = quote.Id,
+                quoteDesc = quote.Description,
+                quoteCost = quote.TotalCost
+            };
+            try
+            {
+                // Execute stored procedure
+                _ = await _sprExecutor.Execute("sprInsertQuote", param);
+
+                // Return quote with status 200
+                return Ok(quote);
+            } 
+            catch (Exception)
+            {
+                // Return error with status 400
+                return BadRequest(new { error = "Invalid Quote" });
+            }
         }
     }
 }

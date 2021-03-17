@@ -3,6 +3,7 @@ using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -73,10 +74,31 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public QuoteRequest Post(QuoteRequest quoteRequest)
+        public async Task<IActionResult> Post(QuoteRequest quoteRequest)
         {
             _logger.LogInformation($"Create Quote Request: {quoteRequest}");
-            return null;
+
+            // Build query parameters
+            var param = new
+            {
+                creationDate = DateTime.UtcNow,
+                preferredDate = DateTime.UtcNow,
+                userUN = quoteRequest.Username,
+                itemID = quoteRequest.ItemId
+            };
+            try
+            {
+                // Execute stored procedure
+                quoteRequest.Id = await _sprExecutor.Execute("sprInsertQuoteRequest", param);
+
+                // Return quote request with status 200
+                return Ok(quoteRequest);
+            }
+            catch (Exception)
+            {
+                // Return error with status 400
+                return BadRequest(new { error = "Invalid Quote Request" });
+            }
         }
     }
 }
