@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
-// import '../App.css';
-
 
 export default function Login(props) {
 
@@ -32,7 +30,6 @@ export default function Login(props) {
                         }
                     })
                     console.log(response)
-                    //document.location.href = "/catalogue";
                 }
                 else (alert("Incorrect Login Details!"))
             }).catch(err => console.log(err))

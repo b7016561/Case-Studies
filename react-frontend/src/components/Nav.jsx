@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
-// import "../App.css";
 
 export default function Nav() {
 

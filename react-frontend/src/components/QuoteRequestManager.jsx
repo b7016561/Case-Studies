@@ -1,6 +1,8 @@
 import axios from 'axios';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
+
+
 export default function QuoteRequestManager(props) {
 
     const [request, setRequest] = useState({});
@@ -14,10 +16,8 @@ export default function QuoteRequestManager(props) {
         const currentRequest = props;
         setRequest(currentRequest);
 
-        //console.log(request)
         const itemId = props.itemId;
 
-        //console.log("itemID" + itemId);
         axios.get(`CatalogItem/${itemId}`,{
             headers: {
                 'Content-Type': 'application/json',
@@ -25,29 +25,16 @@ export default function QuoteRequestManager(props) {
             },
         })
         .then((response) => {
-            //console.log(response)
+
             setItem(response.data)
         })
         .catch(err => console.log(err))        
-        /*axios.get(`/Quote${id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then((res) => {
-
-            if(res.status == 200) {
-                console.log("Quote recieved??")
-               setQuote(res.data);
-            } else { console.log("quote not recieved ")} 
-
-        }).catch((err) => console.log(err))*/
     
     },[props.id]) // effect is only called when the request id changes
 
 
-      function onSubmit(event) {
-         event.preventDefault(); // stopping form refreshing page.
+    function onSubmit(event) {
+        event.preventDefault(); // stopping form refreshing page.
 
         const quote = {
             id: request.id,
@@ -56,9 +43,6 @@ export default function QuoteRequestManager(props) {
             totalCost: parseInt(cost),
             description: description
         }
-       
-        //console.log(quote);
-       
         fetch('quote', {
             method: "POST",
             headers: {
@@ -66,33 +50,12 @@ export default function QuoteRequestManager(props) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(quote)
-        }).then((res) => {
+        }).then((res) =>  { 
 
             if(res.status == 200) { alert("Quote Created")}
-            else { alert("Quote Not Created!")}
-
-        }).catch(err =>  console.log(err))
-        /*axios.post('quote', {
-            headers: {
-               
-            },
-            data: JSON.stringify(quote)
-        }).then((res) => {
-
-            if(res.status == 200) { alert("Quote Created")}
-            else { alert("Quote Not Created!")}
-
-        }).catch(err =>  console.log(err))*/
-   }
-
-    // Access handler, this will render action buttons depending on account type and ticket status
-    /*function Access() {
-        
-        if(accountType == "Admin") { return <AdminControls {...ticket} />; }
-        else if(accountType == "Support") { return <SupportControls {...ticket}/>; }
-        else { return <UserControls {...ticket} />; }
-
-    }*/
+            else { alert("Quote Not Created!")         
+        }}).catch(err =>  console.log(err))
+    }
 
     return (    
    

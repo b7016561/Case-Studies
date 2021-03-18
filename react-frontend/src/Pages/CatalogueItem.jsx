@@ -6,10 +6,7 @@ import {Button} from 'react-bootstrap';
 export default function CatalogueItem(props) {
 
     const history = useHistory();
-    // login obj
     const [item, setItem] = useState({});
-    const [requested, setRequested] = useState("");
-
  
     useEffect(() => {
 
@@ -57,7 +54,6 @@ export default function CatalogueItem(props) {
                 <div className="ItemBox">
 
                     <h4>{item.name}</h4>
-                    <small>{requested}</small>
                     <p>{item.description}</p>
                     <p>{item.cost}</p>
 
