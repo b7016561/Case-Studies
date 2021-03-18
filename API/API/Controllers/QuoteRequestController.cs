@@ -79,6 +79,12 @@ namespace API.Controllers
         {
             _logger.LogInformation($"Create Quote Request: {quoteRequest}");
 
+            // Get user context
+            var userContext = HttpContext.Items["user"] as IUserContext;
+
+            // If username is null get username from user context
+            quoteRequest.Username ??= userContext?.Username;
+
             // Build query parameters
             var param = new
             {

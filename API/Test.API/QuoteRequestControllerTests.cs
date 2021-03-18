@@ -184,7 +184,7 @@ namespace Test.API
         }
 
         [Fact]
-        public async void WhenThePostMethodIsCalled_ThenTheExpectedStoredProcedureIsCalledWithTheExpectedParameters()
+        public async void WhenThePostMethodIsCalled_AndUsernameIsProvided_ThenTheExpectedStoredProcedureIsCalledWithTheUsernameParameterFromTheQuoteRequest()
         {
             // Setup
             var id = 1;
@@ -193,6 +193,8 @@ namespace Test.API
                 .Returns(Task.FromResult(id));
 
             var controller = new QuoteRequestController(_logger, _sprExecutorMock.Object);
+
+            controller.ControllerContext.HttpContext ??= new DefaultHttpContext();
 
             var quoteRequest = new QuoteRequest()
             {
@@ -221,6 +223,45 @@ namespace Test.API
         }
 
         [Fact]
+        public async void WhenThePostMethodIsCalled_AndUsernameIsNotProvided_ThenTheExpectedStoredProcedureIsCalledWithTheUsernameParameterFromTheUserContext()
+        {
+            // Setup
+            var id = 1;
+            _sprExecutorMock
+                .Setup(mock => mock.Execute(It.IsAny<string>(), It.IsAny<object>()))
+                .Returns(Task.FromResult(id));
+
+            var username = "testUsername";
+            _userContextMock.SetupGet(mock => mock.Username).Returns(username);
+
+            var controller = new QuoteRequestController(_logger, _sprExecutorMock.Object);
+
+            controller.ControllerContext.HttpContext ??= new DefaultHttpContext();
+            controller.ControllerContext.HttpContext.Items["user"] = _userContextMock.Object;
+
+            var quoteRequest = new QuoteRequest() { ItemId = "testId" };
+
+            // Action
+            var result = await controller.Post(quoteRequest);
+
+            // Verify 
+            var expectedParams = new 
+            {
+                creationDate = DateTime.UtcNow.TrimMilliseconds(),
+                preferredDate = DateTime.UtcNow.TrimMilliseconds(),
+                userUN = username, 
+                itemID = quoteRequest.ItemId 
+            };
+
+            _sprExecutorMock.Verify(Mock =>
+                Mock.Execute(
+                    "sprInsertQuoteRequest",
+                    It.Is<object>(actual => VerifyHelper.AreEqualObjects(expectedParams, actual))
+                ), Times.Once
+            );
+        }
+
+        [Fact]
         public async void WhenThePostMethodIsCalled_AndTheStoredProcedureThrowsAnException_ThenStatus400IsReturned()
         {
             // Setup
@@ -229,6 +270,8 @@ namespace Test.API
                 .ThrowsAsync(new ArgumentException());
 
             var controller = new QuoteRequestController(_logger, _sprExecutorMock.Object);
+
+            controller.ControllerContext.HttpContext ??= new DefaultHttpContext();
 
             var quoteRequest = new QuoteRequest()
             {
