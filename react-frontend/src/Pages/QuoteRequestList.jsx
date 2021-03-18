@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Table} from 'react-bootstrap';
-import QuoteManager from '../components/QuoteRequestManager'
+import QuoteRequestManager from '../components/QuoteRequestManager'
 import QuoteRequest from '../components/QuoteRequest';
 
 export default function QuoteRequestList(props) {
@@ -55,8 +55,10 @@ export default function QuoteRequestList(props) {
                     }
                 </tbody>
             </Table>    
+
         </div>
-            <QuoteManager {...quoteRequest}/>
+        <QuoteRequestManager {...quoteRequest}/>
+
         </div>   
     )
 }
