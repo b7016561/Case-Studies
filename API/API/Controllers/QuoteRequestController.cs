@@ -1,4 +1,5 @@
-﻿using API.Helpers.Database;
+﻿using API.Helpers;
+using API.Helpers.Database;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -81,8 +82,8 @@ namespace API.Controllers
             // Build query parameters
             var param = new
             {
-                creationDate = DateTime.UtcNow,
-                preferredDate = DateTime.UtcNow,
+                creationDate = DateTime.UtcNow.TrimMilliseconds(),
+                preferredDate = DateTime.UtcNow.TrimMilliseconds(),
                 userUN = quoteRequest.Username,
                 itemID = quoteRequest.ItemId
             };
