@@ -8,12 +8,26 @@ const QuoteRequest = (props) => {
     props.sendQuoteRequest(props);
   }
 
+  function StatusCell() {
+     switch(props.status) {
+        case 'PENDING':
+          return (
+            <td style={{backgroundColor: '#D0312D'}}>{props.status}</td>
+          )
+          
+        case 'PROCESSED':
+            return (
+              <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
+            )
+     }
+  }
+
    return (
      <tr>
-         <td><span onClick={handleClick}><code>{props.id}</code></span></td>
-         <td>{props.itemId}</td>
+         <td>{props.id}</td>
+         <td><span onClick={handleClick}><code>{props.itemId}</code></span></td>
          <td>{props.username}</td>
-         <td>{props.status}</td>
+         <StatusCell />
     </tr>
   );
 };

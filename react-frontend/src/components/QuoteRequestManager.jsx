@@ -96,15 +96,17 @@ export default function QuoteRequestManager(props) {
 
     return (    
    
-        <div>
-            <div>
-                <p className="">Item Name: <span className="QuoteValue"> {item.name} </span></p>
-                <p className="">Cost: <span className="QuoteValue"> {item.description} </span></p>
-                <p className="">Description: <span className="QuoteValue"> {item.cost} </span></p>
-                <p className="">Supplier: <span className="QuoteValue"> {item.supplierName} </span></p>
-
+        <div className="Wrapper"> 
+            <div className="ItemBox">
+                <small style={{fontWeight: 'bold'}}>Item Name</small>
+                <p className="">{item.name}</p>
+                <small style={{fontWeight: 'bold'}}>Description</small>
+                <p className="">{item.description}</p>
+                <small style={{fontWeight: 'bold'}}>Supplier</small>
+                <p className="">{item.supplierName}</p>
             </div>
-            <div className="Login">
+
+            <div className="QuoteBox">
 
                 <Form onSubmit={onSubmit}>
                     <h4>Create Quote</h4>
@@ -133,7 +135,7 @@ export default function QuoteRequestManager(props) {
 
                 </Form>
             </div>
-      </div>
+        </div>
 
     ); 
 }

@@ -90,3 +90,45 @@ $accent-color: #f76540;
         transform: rotate(360deg);
     }
 }
+
+
+@media (min-width: 1000px) {
+
+    .Component {
+        
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .RequestTable {
+        width: 850px !important;
+
+    }
+    .Wrapper {
+        width: 850px;
+        box-shadow: 3px 3px 0.5rem $accent-color !important;
+        border: 0px solid $accent-color;
+        overflow: auto;
+        text-align: center;
+        justify-content: center;
+
+    }
+    .ItemBox {
+        
+        width: 400px;
+        float: left;
+        text-align: left;
+        //border: 1px solid red;
+        padding: 30px 25px 20px 20px;
+        padding-left: 20px;
+
+    }
+    .QuoteBox {
+        width: 400px;
+        padding-top: 50px;
+        //border: 1px solid green;
+        float: left;
+    }
+}

@@ -36,9 +36,9 @@ export default function QuoteRequestList(props) {
     return (
         <div className="Component">
             <h4>Quote Requests</h4>
-        <div>                    
-            <Table responsive striped bordered hover size="sm" variant="dark">
-                <thead>
+        <div className="RequestTable">                    
+            <Table responsive striped bordered hover size="sm">
+                <thead style={{backgroundColor: '#f76540'}}>
                     <tr>
                         <th>ID</th>
                         <th>ItemID</th>
