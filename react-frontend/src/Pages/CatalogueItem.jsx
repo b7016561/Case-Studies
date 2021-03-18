@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
 import axios from 'axios';
-export default function CatalogueItem(props) {
+import {Button} from 'react-bootstrap';
 
+export default function CatalogueItem(props) {
 
     const history = useHistory();
     // login obj
@@ -49,17 +50,22 @@ export default function CatalogueItem(props) {
 
         <div className='Component'>
 
+            <div className="Wrapper">
+            <div className="ItemBox"> 
             <h4>{item.name}</h4>
 
-            <button
-            onClick={RequestQuote}
-            >Request Quote
-            </button>
+            
             <small>{requested}</small>
 
             <p>{item.description}</p>
             <p>{item.cost}</p>
 
+            <Button block size="lg" 
+            onClick={RequestQuote}
+            >Request Quote
+            </Button>
+            </div>
+            </div>
         </div> 
     )
 }
