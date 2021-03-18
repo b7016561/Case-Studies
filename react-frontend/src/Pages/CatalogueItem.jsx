@@ -12,8 +12,8 @@ export default function CatalogueItem(props) {
 
  
     useEffect(() => {
-        const item = props;
-        setItem(item)
+
+        setItem(props)
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
@@ -31,40 +31,42 @@ export default function CatalogueItem(props) {
     },[])
     
     function RequestQuote() {
+        const itemId ={
+            itemId: item.id
+        }
 
-        fetch("QuoteRequest", {
-            method: 'POST',
+        console.log(JSON.stringify(itemId))
+        fetch('quoteRequest', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: item.id
-        })
-        .then((response) => {
-            if(response.status === 200) { setRequested("Quote Requested!") }
-            else { setRequested("Quote Not Requested!") } 
-        })
-        .catch(err => console.log(err))  
+            body: JSON.stringify(itemId)
+        }).then((res) => {
+
+            if(res.status == 200) { alert("Request Created")}
+            else { alert("Requested Not Created!")}
+
+        }).catch(err =>  console.log(err))
     }
 
     return (
-
         <div className='Component'>
-
             <div className="Wrapper">
-            <div className="ItemBox"> 
-            <h4>{item.name}</h4>
+                <div className="ItemBox">
 
-            
-            <small>{requested}</small>
+                    <h4>{item.name}</h4>
+                    <small>{requested}</small>
+                    <p>{item.description}</p>
+                    <p>{item.cost}</p>
 
-            <p>{item.description}</p>
-            <p>{item.cost}</p>
+                    <Button block size="lg" 
+                    onClick={RequestQuote}
+                    >Request Quote
+                    </Button>
 
-            <Button block size="lg" 
-            onClick={RequestQuote}
-            >Request Quote
-            </Button>
-            </div>
+                </div>
             </div>
         </div> 
     )
