@@ -1,4 +1,5 @@
-﻿using API.Helpers.Database;
+﻿using API.Helpers;
+using API.Helpers.Database;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -78,11 +79,17 @@ namespace API.Controllers
         {
             _logger.LogInformation($"Create Quote Request: {quoteRequest}");
 
+            // Get user context
+            var userContext = HttpContext.Items["user"] as IUserContext;
+
+            // If username is null get username from user context
+            quoteRequest.Username ??= userContext?.Username;
+
             // Build query parameters
             var param = new
             {
-                creationDate = DateTime.UtcNow,
-                preferredDate = DateTime.UtcNow,
+                creationDate = DateTime.UtcNow.TrimMilliseconds(),
+                preferredDate = DateTime.UtcNow.TrimMilliseconds(),
                 userUN = quoteRequest.Username,
                 itemID = quoteRequest.ItemId
             };

@@ -8,9 +8,14 @@ namespace API.OAuth
 {
     public class JwtTokenBuilder : IJwtTokenBuilder
     {
-        private const string SECRET = "CSSD-JWT-secret-key";
+        private readonly string _secret;
 
-        public static SymmetricSecurityKey JwtSecurityKey => new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET));
+        public JwtTokenBuilder(string secret)
+        {
+            _secret = secret;
+        }
+
+        public SymmetricSecurityKey JwtSecurityKey => new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
 
         private SigningCredentials JwtSigningCredentials => new SigningCredentials(JwtSecurityKey, SecurityAlgorithms.HmacSha256);
 
@@ -21,9 +26,9 @@ namespace API.OAuth
         }
 
         private IEnumerable<Claim> CreateClaims(string user, string accountType) => new List<Claim>()
-        {
-            new Claim("user", user),
-            new Claim("account_type", accountType)
-        };
+            {
+                new Claim("user", user),
+                new Claim("account_type", accountType)
+            };
     }
 }

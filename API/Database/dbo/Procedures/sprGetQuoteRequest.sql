@@ -10,5 +10,4 @@ AS
 	INNER JOIN QuoteItems QI ON Q.QuoteID = QI.QuoteID
 	INNER JOIN UserQuotes UQ ON Q.QuoteID = UQ.QuoteID
 	WHERE Q.QuoteID = @quoteRequestID
-	AND Q.QuoteStatus = 'PENDING'
 RETURN

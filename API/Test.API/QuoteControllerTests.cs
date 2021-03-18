@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Test.API.Helpers;
@@ -113,6 +114,66 @@ namespace Test.API
 
             // Verify 
             Assert.Equal(200, (result as ObjectResult)?.StatusCode);
+        }
+
+        [Fact]
+        public async void WhenThePostMethodIsCalled_ThenTheExpectedStoredProcedureIsCalledWithTheExpectedParameters()
+        {
+            // Setup
+            var quote = new Quote()
+            {
+                Id = 1,
+                Description = "testDescription",
+                TotalCost = 1200
+            };
+
+            _sprExecutorMock
+                .Setup(mock => mock.Execute(It.IsAny<string>(), It.IsAny<object>()))
+                .Returns(Task.FromResult(quote.Id));
+
+            var controller = new QuoteController(_logger, _sprExecutorMock.Object);
+
+            // Action
+            var result = await controller.Post(quote);
+
+            // Verify 
+            var expectedParams = new 
+            {
+                quoteID = quote.Id,
+                quoteDesc = quote.Description,
+                quoteCost = quote.TotalCost
+            };
+
+            _sprExecutorMock.Verify(Mock =>
+                Mock.Execute(
+                    "sprInsertQuote",
+                    It.Is<object>(actual => VerifyHelper.AreEqualObjects(expectedParams, actual))
+                ), Times.Once
+            );
+        }
+
+        [Fact]
+        public async void WhenThePostMethodIsCalled_AndTheStoredProcedureThrowsAnException_ThenStatus400IsReturned()
+        {
+            // Setup
+            _sprExecutorMock
+                .Setup(mock => mock.Execute(It.IsAny<string>(), It.IsAny<object>()))
+                .ThrowsAsync(new ArgumentException());
+
+            var controller = new QuoteController(_logger, _sprExecutorMock.Object);
+
+            var quote = new Quote()
+            {
+                Id = 1,
+                Description = "testDescription",
+                TotalCost = 1200
+            };
+
+            // Action
+            var result = await controller.Post(quote);
+
+            // Verify 
+            Assert.Equal(400, (result as ObjectResult)?.StatusCode);
         }
     }
 }

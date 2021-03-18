@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace API
@@ -27,6 +26,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Cors policy
             services.AddCors(options => options.AddPolicy("CorsPolicy", builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -35,14 +35,18 @@ namespace API
 
             services.AddControllers();
 
+            // Add stored procedure executor
             services.AddTransient<IStoredProcedureExecutor>(sp =>
             {
-                var connection = new SqlConnection(@"Data Source = (localdb)\ProjectsV13;Initial Catalog=Database;");
+                var connection = new SqlConnection(Configuration.GetConnectionString("Database"));
                 return new StoredProcedureExecutor(connection);
             });
 
-            services.AddTransient<IJwtTokenBuilder>(sp => new JwtTokenBuilder());
+            // Add JWT token builder
+            var jwtTokenBuilder = new JwtTokenBuilder(Configuration.GetValue<string>("JwtSecret"));
+            services.AddTransient<IJwtTokenBuilder>(sp => jwtTokenBuilder);
 
+            // Define JWT options
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
@@ -53,7 +57,7 @@ namespace API
                        ValidateLifetime = false,
                        ValidateIssuerSigningKey = true,
 
-                       IssuerSigningKey = JwtTokenBuilder.JwtSecurityKey
+                       IssuerSigningKey = jwtTokenBuilder.JwtSecurityKey
                    };
                    options.Events = new JwtBearerEvents
                    {
@@ -69,6 +73,7 @@ namespace API
                    };
                });
 
+            // Add User policy
             services.AddAuthorization(options => options.AddPolicy("User",
                 policy =>
                 {
