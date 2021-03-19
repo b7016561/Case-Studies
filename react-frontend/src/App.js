@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter, Route} from 'react-router-dom' ;
 import './App.scss';
 import Login from './components/login';
@@ -11,14 +11,30 @@ import QuoteRequestList from './Pages/QuoteRequestList';
 import QuotesList from './Pages/QuotesList';
 function App() {
 
+
+  const [user, setUser] = useState({})
+
+  function setLoggedUser(user) {
+
+
+    setUser(user);
+    console.log("App.js User: " + user.username)
+
+  }
  
   return (
     <div className="App">
-      <Nav/>
+
       <BrowserRouter>
+        
+        <Route
+        render = {props => ( <Nav user={user} {...props} /> )}>
+
+        </Route>
+        
         <Route exact path="/home"><Home/></Route>
         <Route exact path="/login"
-        render = {props => ( <Login {...props} />)}
+        render = {props => ( <Login setLoggedUser={setLoggedUser} {...props} />)}
         >
         </Route>
 

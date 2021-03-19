@@ -6,6 +6,7 @@ export default function Login(props) {
     // login obj
     const [user, setUser] = useState({});
 
+
     function onSubmit(event) {
 
         event.preventDefault()
@@ -20,13 +21,17 @@ export default function Login(props) {
                 if (response.status == 200) {
                     response.json().then(data => {
                         localStorage.setItem('token', data.token)
+
+                        console.log("Logged in user: " + data.user.username)
+                        props.setLoggedUser(data.user);
+
                         switch(data.user.accountType) {
                             case 'E':
-                                document.location.href = document.location.href = "quoteRequests"
+                                props.history.push("quoteRequests")
                                 break;
                             default: 
-                                document.location.href = "catalogue"
-                                break;
+                                props.history.push("catalogue")
+                            break;
                         }
                     })
                     console.log(response)
