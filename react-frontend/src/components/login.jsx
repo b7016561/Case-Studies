@@ -23,6 +23,8 @@ export default function Login(props) {
                         localStorage.setItem('token', data.token)
 
                         console.log("Logged in user: " + data.user.username)
+
+                        // setting logged in user for Router.
                         props.setLoggedUser(data.user);
 
                         switch(data.user.accountType) {
@@ -66,5 +68,4 @@ export default function Login(props) {
         </Form>
       </div>
     )
-
 }

@@ -5,9 +5,6 @@ import {Form, Button} from 'react-bootstrap';
 
 export default function QuoteManager(props) {
 
-    //const [request, setRequest] = useState({});
-    //const [description, setDescription] = useState();
-    //const [cost, setCost] = useState("");
     const [item, setItem] = useState({});
     const [quote, setQuote] = useState({});
 
@@ -50,6 +47,8 @@ export default function QuoteManager(props) {
     function handleClick(event) {
         //event.preventDefault(); // stopping form refreshing page.
 
+
+        // EXAMPLE post for accepting quote
         const Updatedquote = {
             id: quote.id,
             itemId: quote.itemId,
@@ -84,11 +83,7 @@ export default function QuoteManager(props) {
             {/*Renders button to accept quote if the request has been processed*/}
             <AcceptQuote />
            
-
             </div>
-
-          
-
         </div>
 
     ); 

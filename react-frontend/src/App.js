@@ -16,10 +16,8 @@ function App() {
 
   function setLoggedUser(user) {
 
-
+    // setting logged in user..
     setUser(user);
-    console.log("App.js User: " + user.username)
-
   }
  
   return (
@@ -32,7 +30,7 @@ function App() {
 
         </Route>
         
-        <Route exact path="/home"><Home/></Route>
+        <Route exact path="/"><Home/></Route>
         <Route exact path="/login"
         render = {props => ( <Login setLoggedUser={setLoggedUser} {...props} />)}
         >
