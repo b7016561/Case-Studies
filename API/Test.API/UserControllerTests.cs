@@ -2,6 +2,7 @@ using API.Controllers;
 using API.Helpers.Database;
 using API.Models;
 using API.OAuth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -109,6 +110,39 @@ namespace Test.API
 
             // Verify 
             Assert.Equal(200, (result as ObjectResult)?.StatusCode);
+        }
+
+        [Fact]
+        public void WhenTheGetMethodIsCalled_AndUserContextIsNotNull_ThenStatus200IsReturned()
+        {
+            // Setup
+            var userContextMock = new Mock<IUserContext>();
+
+            var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
+
+            controller.ControllerContext.HttpContext ??= new DefaultHttpContext();
+            controller.ControllerContext.HttpContext.Items["user"] = userContextMock.Object;
+
+            // Action
+            var result = controller.Get();
+
+            // Verify 
+            Assert.Equal(200, (result as ObjectResult)?.StatusCode);
+        }
+
+        [Fact]
+        public void WhenTheGetMethodIsCalled_AndUserContextIsNull_ThenStatus401IsReturned()
+        {
+            // Setup
+            var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
+
+            controller.ControllerContext.HttpContext ??= new DefaultHttpContext();
+
+            // Action
+            var result = controller.Get();
+
+            // Verify 
+            Assert.Equal(401, (result as ObjectResult)?.StatusCode);
         }
     }
 }
