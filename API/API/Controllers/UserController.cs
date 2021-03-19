@@ -1,6 +1,7 @@
 using API.Helpers.Database;
 using API.Models;
 using API.OAuth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("user")]
+    [Authorize(policy: "User")]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
@@ -24,6 +26,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("login")]
         public async Task<IActionResult> Post(LoginRequest loginRequest)
         {
@@ -51,5 +54,23 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("info")]
+        public IActionResult Get()
+        {
+            _logger.LogInformation("Get User Account Type");
+
+            // Get user context
+            var userContext = HttpContext.Items["user"] as IUserContext;
+
+            if (userContext is null)
+            {
+                // Return error with status 401
+                return Unauthorized(new { error = "Invalid Account Type" });
+            }
+
+            // Return account type with status 200
+            return Ok(userContext);
+        }
     }
 }
