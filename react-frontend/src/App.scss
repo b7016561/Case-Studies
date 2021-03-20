@@ -91,6 +91,11 @@ $accent-color: #f76540;
     }
 }
 
+img {
+    height: 350px;
+    width: 250px;
+    padding-bottom: 15px;
+}
 
 @media (min-width: 1000px) {
 
@@ -131,4 +136,31 @@ $accent-color: #f76540;
         //border: 1px solid green;
         float: left;
     }
+    .RequestWrapper {
+        width: 850px;
+        box-shadow: 3px 3px 0.5rem $accent-color !important;
+        border: 0px solid $accent-color;
+        overflow: auto;
+        text-align: center;
+        justify-content: center;
+        padding-bottom: 10px;
+    
+    }
+    .ItemInfo {
+        
+        width: 400px;
+        float: left;
+        text-align: left;
+        //border: 1px solid red;
+        padding: 30px 25px 20px 20px;
+        padding-left: 20px;
+    
+    }
+    .ImageBox {
+        width: 50%;
+        float:right;
+        padding: 10px 25px 0px 30px;
+    }
+    
+    
 }
