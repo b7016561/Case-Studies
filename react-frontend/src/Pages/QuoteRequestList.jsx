@@ -11,10 +11,13 @@ export default function QuoteRequestList(props) {
     const [isSelected, setSelected] = useState(false);
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        
         axios.get("quoteRequest", {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             }
         })
         .then((response) => {

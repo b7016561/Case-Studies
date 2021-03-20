@@ -9,6 +9,8 @@ export default function CatalogueItem(props) {
     const [item, setItem] = useState({});
  
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
 
         setItem(props)
         const urlParams = new URLSearchParams(window.location.search);
