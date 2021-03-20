@@ -10,6 +10,8 @@ export default function QuoteManager(props) {
 
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
 
         const currentQuote = props;
         setQuote(currentQuote);

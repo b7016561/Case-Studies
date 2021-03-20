@@ -10,10 +10,13 @@ export default function Nav(props) {
 
     useEffect(()=>
     {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        
         axios.get('user/info',{
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             },
         })
         .then((response) => {

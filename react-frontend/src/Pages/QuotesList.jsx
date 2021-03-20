@@ -11,6 +11,9 @@ export default function QuotesList() {
     const [isSelected, setSelected] = useState(false);
     
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
         axios.get('/Quote',{
             headers: {
             'Content-Type': 'application/json',
@@ -36,7 +39,7 @@ export default function QuotesList() {
 
     return (
         <div className="Component">
-            <h4>Quote Requests</h4>
+            <h4>Quotes</h4>
             <div className="RequestTable">                    
                 <Table responsive striped bordered hover size="sm">
                     <thead style={{backgroundColor: '#f76540'}}>
