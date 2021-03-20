@@ -41,11 +41,22 @@ export default function Nav(props) {
         props.history.push("catalogue")
     }
 
+    function SignOut()
+    {
+        // deleting the token when user signs out
+        localStorage.removeItem('token');
+        setInfo({});
+        props.history.push("/")
+    }
+
     function EmpNav () {
         return (
 
             <div className="col text-right my-auto">
-                <Button variant="secondary" >Signout</Button>
+                <Button 
+                variant="secondary" 
+                onClick={SignOut}
+                >Signout</Button>
 
                 <Button 
                 variant="secondary"
@@ -58,7 +69,10 @@ export default function Nav(props) {
     function UserNav() {
         return (
             <div className="col text-right my-auto">
-                <Button variant="secondary" >Signout</Button>
+                <Button 
+                variant="secondary" 
+                onClick={SignOut}
+                >Signout</Button>
 
                 <Button 
                 variant="secondary"
