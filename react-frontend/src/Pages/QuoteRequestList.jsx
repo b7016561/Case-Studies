@@ -8,6 +8,7 @@ export default function QuoteRequestList(props) {
 
     const [quoteRequests, setQuoteRequests] = useState([])
     const [quoteRequest, setQuoteRequest] = useState({})
+    const [isSelected, setSelected] = useState(false);
 
     useEffect(() => {
         axios.get("quoteRequest", {
@@ -25,12 +26,16 @@ export default function QuoteRequestList(props) {
 
     // call back function that sets the quote request that has been selected
     function getQuoteRequest(data) {
-        const request = {
-            id: data.id, 
-            itemId: data.itemId, 
-            username: data.username,
-        }
-        setQuoteRequest(request)
+        
+        setQuoteRequest(data);
+        setSelected(true);
+    }
+
+    
+    function DisplayManager()
+    {
+        if(isSelected == true) { return (<QuoteRequestManager {...quoteRequest}/>) } 
+        else { return (<div></div>)}
     }
 
     return (
@@ -57,7 +62,9 @@ export default function QuoteRequestList(props) {
             </Table>    
 
         </div>
-        <QuoteRequestManager {...quoteRequest}/>
+        {/*Conditional Rendering for quote request manager */}
+        <DisplayManager />
+        
 
         </div>   
     )
