@@ -6,62 +6,61 @@ import QuoteManager from '../components/QuoteManager';
 
 export default function QuotesList() {
 
-        const [quoteHistory, setQuoteHistory] = useState([])
-        const [selectedQuote, setSelectedQuote] = useState({})
-        const [quotes, setQuotes] = useState([])
+    const [selectedQuote, setSelectedQuote] = useState({})
+    const [quotes, setQuotes] = useState([])
+    const [isSelected, setSelected] = useState(false);
+    
+    useEffect(() => {
+        axios.get('/Quote',{
+            headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }}).then((res) => {
+            console.log(res.data);
+            setQuotes(res.data);
+        }).catch()
+    },[])
 
-        useEffect(() => {
+    function getQuote(quoteData) {
+            // passback function to recieve quote data from component
+            setSelectedQuote(quoteData);
+            setSelected(true) // selling selected state to true, so the quote manager can be displayed
+    }
 
-            axios.get('/Quote',{
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }}).then((res) => {
-                console.log(res.data);
-                setQuotes(res.data);
-            }).catch()
+    function DisplayManager() {
+        if(isSelected == true)
+        {
+            return (<QuoteManager {...selectedQuote} /> )
+        } else { return( <div> </div>)}
+    }
 
-        },[])
-
-        function getQuote(quoteData) {
-
-                // passback function to recieve quote data from component
-                setSelectedQuote(quoteData);
-        }
-
-       
-
-        return (
-
-                 <div className="Component">
+    return (
+        <div className="Component">
             <h4>Quote Requests</h4>
-        <div className="RequestTable">                    
-            <Table responsive striped bordered hover size="sm">
-                <thead style={{backgroundColor: '#f76540'}}>
-                    <tr>
-                        <th>ID</th>
-                        <th>ItemID</th>
-                        <th>Request Sender</th>
-                        <th>Cost</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        //mapping over filtered tickets and displaying ticket rows, and passing callback function as a prop
-                        quotes.map((quote, key) => {
-                            return <Quote key={key} sendQuote={getQuote} {...quote}/>
-                        })
-                    }
-                </tbody>
-            </Table>    
-        </div>
-        <QuoteManager {...selectedQuote} />
-         
-
+            <div className="RequestTable">                    
+                <Table responsive striped bordered hover size="sm">
+                    <thead style={{backgroundColor: '#f76540'}}>
+                        <tr>
+                            <th>ID</th>
+                            <th>ItemID</th>
+                            <th>Request Sender</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            //mapping over filtered tickets and displaying ticket rows, and passing callback function as a prop
+                            quotes.map((quote, key) => {
+                                return <Quote key={key} sendQuote={getQuote} {...quote}/>
+                            })
+                        }
+                    </tbody>
+                </Table>    
+            </div>
+            {/*Conditional Rendering for the Quote Manager */}
+            <DisplayManager />       
         </div>   
-        )
-
-
+    )
 }

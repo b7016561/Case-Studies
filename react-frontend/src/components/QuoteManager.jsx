@@ -65,6 +65,7 @@ export default function QuoteManager(props) {
     return (    
    
         <div className="Wrapper"> 
+            <h3>Quote Details</h3>
             <div className="ItemBox">
                 <small style={{fontWeight: 'bold'}}>Item Name</small>
                 <p className="">{item.name}</p>
