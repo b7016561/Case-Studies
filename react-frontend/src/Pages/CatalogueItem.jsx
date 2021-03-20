@@ -44,6 +44,7 @@ export default function CatalogueItem(props) {
 
             if(res.status == 200) { alert("Request Created")}
             else { alert("Requested Not Created!")}
+            props.history.push("catalogue");
 
         }).catch(err =>  console.log(err))
     }
