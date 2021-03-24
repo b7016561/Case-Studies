@@ -17,8 +17,12 @@ const Quote = (props) => {
           
         case 'PROCESSED':
             return (
-              <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
+              <td style={{backgroundColor: '#FCAE1E'}}>{props.status}</td>
             )
+        case 'ACCEPTED':
+          return (
+            <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
+          )
      }
   }
 

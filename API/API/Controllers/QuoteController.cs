@@ -87,5 +87,27 @@ namespace API.Controllers
                 return BadRequest(new { error = "Invalid Quote" });
             }
         }
+
+        [HttpPost]
+        [Route("accept{id}")]
+        public async Task<IActionResult> Post(int id)
+        {
+            // log request
+            _logger.LogInformation("Accept Quote");
+
+            // q params
+            var param = new { quoteId = id };
+
+            try
+            {
+                // stored proc execute
+                _ = await _sprExecutor.Execute("sprAcceptQuote", param);
+
+                // return status 200
+                return Ok();
+
+                // returns 400 with error message
+            } catch (Exception ) { return BadRequest(new { error = "Invalid Quote"  }); }
+        }
     }
 }

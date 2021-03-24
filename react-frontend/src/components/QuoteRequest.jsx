@@ -9,18 +9,22 @@ const QuoteRequest = (props) => {
   }
 
   function StatusCell() {
-     switch(props.status) {
-        case 'PENDING':
-          return (
-            <td style={{backgroundColor: '#D0312D'}}>{props.status}</td>
-          )
-          
-        case 'PROCESSED':
-            return (
-              <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
-            )
-     }
-  }
+    switch(props.status) {
+       case 'PENDING':
+         return (
+           <td style={{backgroundColor: '#D0312D'}}>{props.status}</td>
+         )
+         
+       case 'PROCESSED':
+           return (
+             <td style={{backgroundColor: '#FCAE1E'}}>{props.status}</td>
+           )
+       case 'ACCEPTED':
+         return (
+           <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
+         )
+    }
+ }
 
    return (
      <tr>

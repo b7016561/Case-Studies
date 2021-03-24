@@ -46,21 +46,23 @@ export default function QuoteManager(props) {
     }
 
 
-    function handleClick(event) {
-        //event.preventDefault(); // stopping form refreshing page.
+    function handleClick() {
 
+        const id = quote.id;
 
-        // EXAMPLE post for accepting quote
-        const Updatedquote = {
-            id: quote.id,
-            itemId: quote.itemId,
-            username: quote.username,
-            totalCost: parseInt(quote.cost),
-            description: quote.description,
-            status: 'ACCEPTED'
-        }
+        console.log("quote id"+ id);
 
-        console.log(Updatedquote);
+        fetch(`quote/accept${id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then((res) =>  { 
+
+            if(res.status == 200) { alert("Quote Accepted")}
+            else { alert("Quote Not Accepted!")         
+        }}).catch(err =>  console.log(err))
        
     }
 

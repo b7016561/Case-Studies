@@ -86,6 +86,7 @@
     <Build Include="dbo\Procedures\sprGetQuoteRequestsForUser.sql" />
     <Build Include="dbo\Procedures\sprGetQuoteRequest.sql" />
     <Build Include="dbo\Procedures\sprInsertQuoteRequest.sql" />
+    <Build Include="dbo\Procedures\sprAcceptQuote.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertStatements.sql" />
