@@ -16,3 +16,4 @@ jobs:
       # Run API unit tests
       - name: API Unit Tests
         run: dotnet test
+        working-directory: API/Test.API
