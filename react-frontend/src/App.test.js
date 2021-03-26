@@ -24,6 +24,17 @@ test("/catalogue renders Catalog component", () => {
   expect(getByText("ABC Catalog")).toBeInTheDocument();
 });
 
+test("/signup renders SignUp component", () => {
+  const history = createMemoryHistory();
+  history.push("/signup")
+  const { getByLabelText } = render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  expect(getByLabelText("First Name")).toBeInTheDocument();
+});
+
 test("/login renders login component", () => {
   const history = createMemoryHistory();
   history.push("/login")
