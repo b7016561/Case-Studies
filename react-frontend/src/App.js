@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.scss";
 import Login from "./components/login";
+import SignUp from "./components/SignUp";
 import Home from "./Pages/Home";
 import Catalog from "./Pages/Catalog";
 import CatalogueItem from "./Pages/CatalogueItem";
@@ -19,6 +20,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/catalogue" component={Catalog} />
+        <Route exact path="/signup" component={SignUp} />
         <Route
           exact
           path="/login"
