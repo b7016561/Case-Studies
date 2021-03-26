@@ -5,7 +5,9 @@ using API.OAuth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Moq;
+using System;
 using System.Threading.Tasks;
 using Test.API.Helpers;
 using Xunit;
@@ -143,6 +145,104 @@ namespace Test.API
 
             // Verify 
             Assert.Equal(401, (result as ObjectResult)?.StatusCode);
+        }
+
+        [Fact]
+        public async void WhenTheSignupMethodIsCalled_ThenTheExpectedStoredProceduresAreCalledWithTheExpectedParameters()
+        {
+            // Setup
+            _sprExecutorMock
+                .Setup(mock => mock.QuerySingleOrDefault<string>(It.IsAny<string>(), It.IsAny<object>()))
+                .Returns(Task.FromResult<string>(null));
+            _sprExecutorMock
+                .Setup(mock => mock.Execute(It.IsAny<string>(), It.IsAny<object>()))
+                .Returns(Task.FromResult(default(int)));
+
+            var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
+
+            var optionsMock = new Mock<IOptions<ApiBehaviorOptions>>();
+
+            // Action
+            var signUpRequest = new SignUpRequest()
+            {
+                FirstName = "firstName",
+                LastName = "lastName",
+                Email = "email@email.email",
+                Username = "username",
+                Password = "password"
+            };
+            var result = await controller.Post(signUpRequest, optionsMock.Object);
+
+            // Verify 
+            // Verify sprGetUsername 
+            {
+                var expectedParams = new
+                {
+                    signUpRequest.Username
+                };
+
+                _sprExecutorMock.Verify(Mock => 
+                    Mock.QuerySingleOrDefault<string>(
+                        "sprGetUsername",
+                        It.Is<object>(actual => VerifyHelper.AreEqualObjects(expectedParams, actual))
+                    ), Times.Once
+                );
+            }
+            // Verify sprGetEmail 
+            {
+                var expectedParams = new
+                {
+                    signUpRequest.Email
+                };
+
+                _sprExecutorMock.Verify(Mock => 
+                    Mock.QuerySingleOrDefault<string>(
+                        "sprGetEmail",
+                        It.Is<object>(actual => VerifyHelper.AreEqualObjects(expectedParams, actual))
+                    ), Times.Once
+                );
+            }
+            // Verify sprInsertUser 
+            {
+                var expectedParams = signUpRequest;
+
+                _sprExecutorMock.Verify(Mock => 
+                    Mock.Execute(
+                        "sprInsertUser",
+                        It.Is<object>(actual => VerifyHelper.AreEqualObjects(expectedParams, actual))
+                    ), Times.Once
+                );
+            }
+        }
+
+        [Fact]
+        public async void WhenTheSignupMethodIsCalled_AndTheStoredProcedureThrowsAnException_ThenStatus400IsReturned()
+        {
+            // Setup
+            _sprExecutorMock
+                .Setup(mock => mock.QuerySingleOrDefault<string>(It.IsAny<string>(), It.IsAny<object>()))
+                .Returns(Task.FromResult<string>(null));
+            _sprExecutorMock
+                .Setup(mock => mock.Execute(It.IsAny<string>(), It.IsAny<object>()))
+                .ThrowsAsync(new ArgumentNullException());
+
+            var controller = new UserController(_logger, _sprExecutorMock.Object, _jwtTokenBuilder);
+
+            var optionsMock = new Mock<IOptions<ApiBehaviorOptions>>();
+
+            // Action
+            var signUpRequest = new SignUpRequest()
+            {
+                FirstName = "firstName",
+                LastName = "lastName",
+                Email = "email@email.email",
+                Username = "username",
+                Password = "password"
+            };
+            var result = await controller.Post(signUpRequest, optionsMock.Object);
+
+            // Verify 
+            Assert.Equal(400, (result as ObjectResult)?.StatusCode);
         }
     }
 }
