@@ -52,9 +52,9 @@ class Catalog extends Component {
         return (
 
             <div>
-                <Row className="justify-content-center">
+                <Row className="justify-content-center" style={{ marginLeft: "5px", marginRight: "25px" }}>
                     <Col xs={3}>
-                        <Card style={{ width: "100%", margin: "15px", minHeight:"90%"}} border="secondary">
+                        <Card className="defaultCard" style={{ width: "100%", margin: "15px", minHeight:"90%"}} border="secondary">
                             <Card.Header>ABC Catalog</Card.Header>
                             <Card.Body>Please choose your desired item and request a quote !</Card.Body>
                         </Card>
