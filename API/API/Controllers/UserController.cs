@@ -4,7 +4,9 @@ using API.OAuth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -54,6 +56,45 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("signup")]
+        public async Task<IActionResult> Post(SignUpRequest signUpRequest, [FromServices] IOptions<ApiBehaviorOptions> options)
+        {
+            // If username already exists add error
+            if (await UsernameExists(signUpRequest.Username))
+            {
+                ModelState.AddModelError("Username", "Username Is Already In Use");
+            }
+
+            // If email already exists add error
+            if (await EmailExists(signUpRequest.Email))
+            {
+                ModelState.AddModelError("Email", "Email Is Already In Use");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                // Return errors with status 400
+                return options.Value.InvalidModelStateResponseFactory(ControllerContext);
+            }
+
+            _logger.LogInformation("SignUp");
+
+            try
+            {
+                // Execute stored procedure
+                _ = await _sprExecutor.Execute("sprInsertUser", signUpRequest);
+            }
+            catch (Exception)
+            {
+                // Return error with status 400
+                return BadRequest(new { error = "Invalid SignUp Request" });
+            }
+            // Return status 200
+            return Ok();
+        }
+
         [HttpGet]
         [Route("info")]
         public IActionResult Get()
@@ -71,6 +112,18 @@ namespace API.Controllers
 
             // Return account type with status 200
             return Ok(userContext);
+        }
+
+        private async Task<bool> UsernameExists(string username)
+        {
+            var value = await _sprExecutor.QuerySingleOrDefault<string>("sprGetUsername", new { Username = username });
+            return !(value is null);
+        }
+
+        private async Task<bool> EmailExists(string email)
+        {
+            var value = await _sprExecutor.QuerySingleOrDefault<string>("sprGetEmail", new { Email = email });
+            return !(value is null);
         }
     }
 }
