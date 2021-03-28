@@ -4,7 +4,6 @@ import axios from 'axios';
 import {Button} from 'react-bootstrap';
 
 export default function CatalogueItem(props) {
-
     const history = useHistory();
     const [item, setItem] = useState({});
  
@@ -13,7 +12,7 @@ export default function CatalogueItem(props) {
         if (!token) return;
 
         setItem(props)
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(props.location.search);
         const id = urlParams.get('id');
 
         axios.get(`CatalogItem/${id}`,{
