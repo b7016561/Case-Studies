@@ -34,6 +34,9 @@ export default function Nav(props) {
     function Login() {
         props.history.push("login");
     }
+    function SignUp() {
+        props.history.push("signup");
+    }
     function QuoteRequests() {
         props.history.push("quoteRequests");
     }
@@ -102,7 +105,7 @@ export default function Nav(props) {
                 onClick={Login}
                 >Login</Button>
 
-                <Button variant="secondary" >Signup</Button>
+                <Button variant="secondary" onClick={SignUp} >Signup</Button>
             </div>
         )    
     }

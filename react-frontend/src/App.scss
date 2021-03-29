@@ -170,5 +170,12 @@ img {
         padding: 10px 25px 0px 30px;
     }
     
-    
+    .Error {
+        color: red;
+    }
+    .card:not(.defaultCard):hover{
+        transform: scale(1.1);
+        transition-duration: 0.3s;
+        cursor: pointer;
+    }
 }
