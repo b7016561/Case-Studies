@@ -73,9 +73,9 @@ VALUES ('jsmith248', '92 New Road', '', '', 'Croydon', 'South London', 'CR40 0ZH
 ('djones517', '28 Highfield Road', '', '', 'Glasgow', 'Lanarkshire', 'G6 1EH')
 GO
 	-- UserQuotes Table Insert
-INSERT INTO  [dbo].[UserQuotes] ([UserUN], [SupplierUN], [QuoteID])
-VALUES ('jsmith248','djones517' ,'1'),
-('ldavies043', 'djones517', '2')
+INSERT INTO  [dbo].[UserQuotes] ([UserUN], [QuoteID])
+VALUES ('jsmith248','1'),
+('ldavies043', '2')
 
 GO
 	-- SupplierItems
