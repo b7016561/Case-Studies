@@ -62,7 +62,6 @@ export default function QuoteManager(props) {
             quoteId: quote.id,
             accepted: true
         }
-        console.log("quote response " + quoteResponse);
         fetch("quote/quoteResponse", {
             method: "POST",
             headers: {
@@ -83,8 +82,6 @@ export default function QuoteManager(props) {
             quoteId: quote.id,
             accepted: false
         }
-
-        console.log("quote id"+ quoteResponse);
 
         fetch("quote/quoteResponse", {
             method: "POST",

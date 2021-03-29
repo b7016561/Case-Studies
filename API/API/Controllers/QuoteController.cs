@@ -93,12 +93,10 @@ namespace API.Controllers
         public async Task<IActionResult> Post(QuoteResponse quoteResponse)
         {
             // log request
-            _logger.LogInformation("Responsed to quote");
+            _logger.LogInformation("Quote Accepted: " + quoteResponse.Accepted);
 
             try
             {
-                Console.WriteLine(quoteResponse.Accepted);
-
                 // q param
                 var param = new { quoteId = quoteResponse.QuoteID };
 
