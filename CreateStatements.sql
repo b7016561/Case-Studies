@@ -87,7 +87,6 @@ CREATE INDEX I_UserName_AD ON [dbo].[Address](UserName);
     -- Linking Tables
             -- UserQuotes
 CREATE INDEX I_UserUN_UQ ON [dbo].[UserQuotes](UserUN);
-CREATE INDEX I_SupplierUN_UQ ON [dbo].[UserQuotes](SupplierUN);
 CREATE INDEX I_QuoteID_UQ ON [dbo].[UserQuotes](QuoteID);
             -- SupplierItems
 CREATE INDEX I_UserName_SI ON [dbo].[SupplierItems](UserName);
