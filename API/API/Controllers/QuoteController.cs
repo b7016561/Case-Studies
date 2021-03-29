@@ -89,24 +89,31 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("accept{id}")]
-        public async Task<IActionResult> Post(int id)
+        [Route("quoteResponse")]
+        public async Task<IActionResult> Post(QuoteResponse quoteResponse)
         {
             // log request
-            _logger.LogInformation("Accept Quote");
-
-            // q params
-            var param = new { quoteId = id };
+            _logger.LogInformation("Responsed to quote");
 
             try
             {
-                // stored proc execute
-                _ = await _sprExecutor.Execute("sprAcceptQuote", param);
+                Console.WriteLine(quoteResponse.Accepted);
 
-                // return status 200
-                return Ok();
+                // q param
+                var param = new { quoteId = quoteResponse.QuoteID };
 
-                // returns 400 with error message
+                // if the quote has been accepted or rejected
+                switch(quoteResponse.Accepted)
+                {
+                    case true:
+                        _ = await _sprExecutor.Execute("sprAcceptQuote", param);
+                        return Ok();
+
+                    case false:
+                        _ = await _sprExecutor.Execute("sprRejectQuote", param);
+                        return Ok();
+                }
+                        
             } catch (Exception ) { return BadRequest(new { error = "Invalid Quote"  }); }
         }
     }

@@ -35,36 +35,71 @@ export default function QuoteManager(props) {
     function AcceptQuote() {
         if(quote.status == "PROCESSED") {
             return (
+                <div>
                 <Button block size="lg"
-                onClick={handleClick}
+                className ="Accept-Button"
+                onClick={handleAccept}
                 >
                 Accept Quote
-                </Button>
+                </Button> 
+                 <Button block size="lg"
+                 className="Reject-Button"
+                 onClick={handleReject}
+                 >
+                 Reject Quote
+                 </Button> 
+                 </div>
+
             )
         } else { return ( <div></div> ) }
        
     }
 
 
-    function handleClick() {
+    function handleAccept() {
 
-        const id = quote.id;
-
-        console.log("quote id"+ id);
-
-        fetch(`quote/accept${id}`, {
+        const quoteResponse = {
+            quoteId: quote.id,
+            accepted: true
+        }
+        console.log("quote response " + quoteResponse);
+        fetch("quote/quoteResponse", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
+            },
+            body: JSON.stringify(quoteResponse)
         }).then((res) =>  { 
 
             if(res.status == 200) { alert("Quote Accepted")}
             else { alert("Quote Not Accepted!")         
         }}).catch(err =>  console.log(err))
-       
     }
+
+    function handleReject() {
+        
+        const quoteResponse = {
+            quoteId: quote.id,
+            accepted: false
+        }
+
+        console.log("quote id"+ quoteResponse);
+
+        fetch("quote/quoteResponse", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(quoteResponse)
+        }).then((res) =>  { 
+
+            if(res.status == 200) { alert("Quote Rejected")}
+            else { alert("Quote Not Rejected!")         
+        }}).catch(err =>  console.log(err))
+    }
+    
 
     return (    
    
