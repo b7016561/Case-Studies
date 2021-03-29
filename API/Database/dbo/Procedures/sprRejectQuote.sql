@@ -2,10 +2,14 @@
 	@quoteId INT
 AS
 
-	DELETE FROM [Quote]
+	DELETE FROM [QuoteItems]
 	WHERE QuoteID = @quoteId
 
 	DELETE FROM [UserQuotes]
 	WHERE QuoteID = @quoteId
 
+	DELETE FROM [Quote]
+	WHERE QuoteID = @quoteId
+
+	
 RETURN
