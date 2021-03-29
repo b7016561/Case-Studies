@@ -87,6 +87,9 @@
     <Build Include="dbo\Procedures\sprGetQuoteRequest.sql" />
     <Build Include="dbo\Procedures\sprInsertQuoteRequest.sql" />
     <Build Include="dbo\Procedures\sprAcceptQuote.sql" />
+    <Build Include="dbo\Procedures\sprInsertUser.sql" />
+    <Build Include="dbo\Procedures\sprGetUsername.sql" />
+    <Build Include="dbo\Procedures\sprGetEmail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertStatements.sql" />
