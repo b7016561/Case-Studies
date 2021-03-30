@@ -13,7 +13,6 @@ export default function QuoteRequestManager(props) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) return;
 
         const currentRequest = props;
         setRequest(currentRequest);

@@ -8,28 +8,27 @@ export default function Nav(props) {
 
     const [userInfo, setInfo] = useState({})
 
-    useEffect(()=>
-    {
+    useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) {
+        //stops infinite redirect loop 
+        if (!token)
             return;
-        }else{        
-        axios.get('user/info',{
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-        })
-        .then((response) => {
-                console.log("Nav Effect: "+ response.data)
-                setInfo(response.data);
-            })  
-        .catch(err => console.log(err))
-        }
+        else
+            axios.get('user/info', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+                .then((response) => {
+                    console.log("Nav Effect: " + response.data)
+                    setInfo(response.data);
+                })
+                .catch(err => console.log(err))
 
         // gets updated user info when new user logs in
         // However this props.user RESET when page is refreshed.. as no data has been set from login
-    },[props.user])
+    }, [props.user])
 
 
     // Front End Routes
@@ -49,26 +48,25 @@ export default function Nav(props) {
         props.history.push("catalogue")
     }
 
-    function SignOut()
-    {
+    function SignOut() {
         // deleting the token when user signs out
         localStorage.removeItem('token');
         setInfo({});
         props.history.push("/")
     }
 
-    function EmpNav () {
+    function EmpNav() {
         return (
 
             <div className="col text-right my-auto">
-                <Button 
-                variant="secondary" 
-                onClick={SignOut}
+                <Button
+                    variant="secondary"
+                    onClick={SignOut}
                 >Signout</Button>
 
-                <Button 
-                variant="secondary"
-                onClick={QuoteRequests}
+                <Button
+                    variant="secondary"
+                    onClick={QuoteRequests}
                 >Quote Requests</Button>
             </div>
         )
@@ -77,20 +75,20 @@ export default function Nav(props) {
     function UserNav() {
         return (
             <div className="col text-right my-auto">
-                <Button 
-                variant="secondary" 
-                onClick={SignOut}
+                <Button
+                    variant="secondary"
+                    onClick={SignOut}
                 >Signout</Button>
 
-                <Button 
-                variant="secondary"
-                onClick={Quotes}
+                <Button
+                    variant="secondary"
+                    onClick={Quotes}
                 >Quotes
                 </Button>
 
-                <Button 
-                variant="secondary"
-                onClick={Catalogue}
+                <Button
+                    variant="secondary"
+                    onClick={Catalogue}
                 >Catalogue
                 </Button>
             </div>
@@ -101,39 +99,38 @@ export default function Nav(props) {
         return (
             <div className="col text-right my-auto">
 
-                <Button 
-                variant="primary" 
-                className="mr-2"
-                onClick={Login}
+                <Button
+                    variant="primary"
+                    className="mr-2"
+                    onClick={Login}
                 >Login</Button>
 
                 <Button variant="secondary" onClick={SignUp} >Signup</Button>
             </div>
-        )    
+        )
     }
 
     function DisplayNav() {
 
-        switch(userInfo.accountType)
-        {
+        switch (userInfo.accountType) {
             case 'E':
-                return ( <EmpNav /> )
-            
+                return (<EmpNav />)
+
             case 'U':
-                return ( <UserNav /> )
-                
+                return (<UserNav />)
+
             default:
-                return ( <VisitNav /> )
+                return (<VisitNav />)
         }
     }
 
     return (
-        
+
         <div className="Nav row m-3">
             <svg id="Logo">
                 <circle cx={30} cy={30} r={30} fill="#f76540" />
             </svg>
-                <DisplayNav />             
+            <DisplayNav />
         </div>
     )
 }

@@ -12,7 +12,6 @@ export default function QuoteRequestList(props) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) return;
         
         axios.get("quoteRequest", {
             headers: {
