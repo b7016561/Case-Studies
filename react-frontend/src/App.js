@@ -10,8 +10,6 @@ import Nav from "./components/Nav";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import QuoteRequestList from "./Pages/QuoteRequestList";
 import QuotesList from "./Pages/QuotesList";
-import ProtectedUserRoute from "./routes/ProtectedUserRoute";
-import ProtectedEmployeeRoute from "./routes/ProtectedEmployeeRoute";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -29,19 +27,20 @@ export default function App() {
           render={(props) => <Login setLoggedUser={setUser} {...props} />}
         />
         {/* User Routes */}
-        <ProtectedUserRoute exact path="/catalogue" component={Catalog} />
-        <ProtectedUserRoute exact path="/quotes" component={QuotesList} />
-        <ProtectedUserRoute
+        <Route exact path="/catalogue" component={Catalog} />
+        <Route exact path="/quotes" component={QuotesList} />
+        <Route
           exact
           path="/catalogueItem"
           component={CatalogueItem}
         />
         {/* Employee Routes */}
-        <ProtectedEmployeeRoute
+        <Route
           exact
           path="/quoteRequests"
           component={QuoteRequestList}
         />
+
       </Switch>
     </div>
   );

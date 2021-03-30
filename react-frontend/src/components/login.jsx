@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 
 export default function Login(props) {
-
     // login obj
     const [user, setUser] = useState({});
-
 
     function onSubmit(event) {
 

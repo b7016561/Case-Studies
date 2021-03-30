@@ -11,8 +11,9 @@ export default function Nav(props) {
     useEffect(()=>
     {
         const token = localStorage.getItem('token');
-        if (!token) return;
-        
+        if (!token) {
+            return;
+        }else{        
         axios.get('user/info',{
             headers: {
                 'Content-Type': 'application/json',
@@ -24,6 +25,7 @@ export default function Nav(props) {
                 setInfo(response.data);
             })  
         .catch(err => console.log(err))
+        }
 
         // gets updated user info when new user logs in
         // However this props.user RESET when page is refreshed.. as no data has been set from login
