@@ -10,21 +10,19 @@ export default function Nav(props) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        //stops infinite redirect loop 
-        if (!token)
-            return;
-        else
-            axios.get('user/info', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            })
-                .then((response) => {
-                    console.log("Nav Effect: " + response.data)
-                    setInfo(response.data);
-                })
-                .catch(err => console.log(err))
+        if (!token) return;
+        
+        axios.get('user/info',{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        .then((response) => {
+                console.log("Nav Effect: "+ response.data)
+                setInfo(response.data);
+            })  
+        .catch(err => console.log(err))
 
         // gets updated user info when new user logs in
         // However this props.user RESET when page is refreshed.. as no data has been set from login
@@ -128,7 +126,9 @@ export default function Nav(props) {
 
         <div className="Nav row m-3">
             <svg id="Logo">
+                <a href='/'>
                 <circle cx={30} cy={30} r={30} fill="#f76540" />
+                </a>
             </svg>
             <DisplayNav />
         </div>

@@ -4,15 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import axios from 'axios';
-
-        axios.interceptors.response.use(undefined, (err) => {
-            if(err.response.status === 401){
-                localStorage.clear();
-                document.location.href = '/'
-            }
-            return Promise.reject(err);
-        });
 
 ReactDOM.render(
   <React.StrictMode>

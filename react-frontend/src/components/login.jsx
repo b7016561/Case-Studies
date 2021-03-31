@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap';
 
 export default function Login(props) {
+
     // login obj
     const [user, setUser] = useState({});
+
 
     function onSubmit(event) {
 
@@ -30,7 +32,7 @@ export default function Login(props) {
                                 props.history.push("quoteRequests")
                                 break;
                             default: 
-                                props.history.push("catalogue")
+                                props.history.push("dashboard")
                             break;
                         }
                     })
