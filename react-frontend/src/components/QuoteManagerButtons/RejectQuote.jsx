@@ -1,5 +1,7 @@
 import { useState, useEffect} from 'react';
 import {Button} from 'react-bootstrap';
+
+
 export default function RejectQuote(props) {
 
     const [quote, setQuote] = useState({})
@@ -11,6 +13,7 @@ export default function RejectQuote(props) {
 
     function handleClick() {
 
+        console.log("Rejected")
         const quoteResponse = {
             quoteId: quote.id,
             accepted: false

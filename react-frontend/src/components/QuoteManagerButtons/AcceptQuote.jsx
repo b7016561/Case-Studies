@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 
+
 export default function AcceptQuote(props) {
 
     const [quote, setQuote] = useState({})
@@ -8,11 +9,11 @@ export default function AcceptQuote(props) {
     useEffect(() => {
         setQuote(props);
         
-        console.log("Accept Btn Props: " + props);
     },[props.id])
 
     function handleClick() {
 
+        console.log("Accepted");
         const quoteResponse = {
             quoteId: quote.id,
             accepted: true
@@ -37,6 +38,7 @@ export default function AcceptQuote(props) {
         className ="Accept-Button"
         data-testid="AcceptQuoteBtn"
         onClick={handleClick}
+        type='button'
         >
         Accept Quote
         </Button> 
