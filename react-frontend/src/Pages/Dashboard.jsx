@@ -20,7 +20,7 @@ export default function Dashboard() {
                         </Card>
                     </a>
                 </Col>
-                <Col md-5>
+                <Col>
                     <Card>
                         <Card.Title>Manage my account</Card.Title>
                     </Card>
@@ -30,7 +30,6 @@ export default function Dashboard() {
             <Row>
                 <Button>Learn More</Button>
             </Row>
-            
         </div>
     )
 }
