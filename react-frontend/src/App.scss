@@ -18,37 +18,67 @@
     font-size: calc(10px + 2vmin);
     color: black;
 }
+
 .Login {
     padding: 60px 0;
 }
+
 .Login form {
     margin: 0 auto;
     max-width: 320px;
 }
+
+.Signup form {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.Signup h4 {
+    padding-left: 450px;
+}
+a{
+    text-decoration: white !important;
+}
+
+.cards{
+    padding-top: 5%;
+}
+
+.card {
+    min-height: 250px;
+    min-width: 200px !important;
+    text-align: center;
+    color: black;
+    margin: 50px;
+}
+
 .Nav {
     display: flow-root;
 }
+
 #Logo {
     width: 60px;
     height: 60px;
 }
+
 .Logo {
     width: 150px;
     margin: unset;
 }
+
 .btn {
     font-weight: bold;
 }
+
 $accent-color: #f76540;
 .btn-secondary {
     background: $accent-color !important;
     border-color: #fff !important;
     color: white !important;
-    
     &:hover,
     &:focus,
     &.focus {
-        background: darken($accent-color,20%) !important;
+        background: darken($accent-color, 20%) !important;
         border-color: none !important;
         color: white !important;
         //background-color: $accent-color-lighter !important;
@@ -59,11 +89,11 @@ $accent-color: #f76540;
         }
     }
 }
+
 .btn-primary {
     background: none !important;
     border: white !important;
     color: $accent-color !important;
-    
     &:hover,
     &:focus,
     &.focus {
@@ -78,14 +108,15 @@ $accent-color: #f76540;
         }
     }
 }
+
 .App-link {
     color: #61dafb;
 }
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
     }
-    
     to {
         transform: rotate(360deg);
     }
@@ -98,18 +129,13 @@ img {
 }
 
 @media (min-width: 1000px) {
-
     .Component {
-        
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
-
     }
-
     .RequestTable {
         width: 850px !important;
-
     }
     .Wrapper {
         width: 850px;
@@ -118,17 +144,14 @@ img {
         overflow: auto;
         text-align: center;
         justify-content: center;
-
     }
     .ItemBox {
-        
         width: 400px;
         float: left;
         text-align: left;
         //border: 1px solid red;
         padding: 30px 25px 20px 20px;
         padding-left: 20px;
-
     }
     .QuoteBox {
         width: 400px;
@@ -144,28 +167,24 @@ img {
         text-align: center;
         justify-content: center;
         padding-bottom: 10px;
-    
     }
     .ItemInfo {
-        
         width: 400px;
         float: left;
         text-align: left;
         //border: 1px solid red;
         padding: 30px 25px 20px 20px;
         padding-left: 20px;
-    
     }
     .ImageBox {
         width: 50%;
-        float:right;
+        float: right;
         padding: 10px 25px 0px 30px;
     }
-    
     .Error {
         color: red;
     }
-    .card:not(.defaultCard):hover{
+    .card:not(.defaultCard):hover {
         transform: scale(1.1);
         transition-duration: 0.3s;
         cursor: pointer;

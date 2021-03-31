@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 
 export default function Login(props) {
   const [user, setUser] = useState({});
@@ -30,8 +30,13 @@ export default function Login(props) {
     setUser((user) => ({ ...user, [event.target.name]: event.target.value }));
 
   return (
-    <div className="Login">
+
+    
+    <div className="Signup">
+      <h4>Signup</h4>
       <Form onSubmit={onSubmit}>
+        <Row>
+      <Col>
         <Form.Group size="lg" controlId="FirstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
@@ -103,9 +108,21 @@ export default function Login(props) {
             []
           )}
         </Form.Group>
+        </Col>
+        <Col>
+        <Form.Label>Account Type</Form.Label>
+        <Form.Group size="lg" controlId="AccountType">
+            <Form.Control as="select">
+              <option>User</option>
+              <option>Employee</option>
+              <option>Support</option>
+            </Form.Control>
+        </Form.Group>
+        </Col>
         <Button block size="lg" type="submit">
           SignUp
         </Button>
+        </Row>
       </Form>
     </div>
   );
