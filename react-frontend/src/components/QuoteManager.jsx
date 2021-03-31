@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
-
+import AcceptQuote from '../components/QuoteManagerButtons/AcceptQuote';
+import RejectQuote from '../components/QuoteManagerButtons/RejectQuote';
 
 export default function QuoteManager(props) {
 
@@ -32,71 +33,19 @@ export default function QuoteManager(props) {
     
     },[props.id]) // effect is only called when the request id changes
 
-    function AcceptQuote() {
+    function LoadButtons() {
         if(quote.status == "PROCESSED") {
             return (
                 <div>
-                <Button block size="lg"
-                className ="Accept-Button"
-                onClick={handleAccept}
-                >
-                Accept Quote
-                </Button> 
-                 <Button block size="lg"
-                 className="Reject-Button"
-                 onClick={handleReject}
-                 >
-                 Reject Quote
-                 </Button> 
+                    <AcceptQuote {...quote}/>
+                    <RejectQuote {...quote}/>
+              
                  </div>
 
             )
         } else { return ( <div></div> ) }
        
     }
-
-
-    function handleAccept() {
-
-        const quoteResponse = {
-            quoteId: quote.id,
-            accepted: true
-        }
-        fetch("quote/quoteResponse", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(quoteResponse)
-        }).then((res) =>  { 
-
-            if(res.status == 200) { alert("Quote Accepted")}
-            else { alert("Quote Not Accepted!")         
-        }}).catch(err =>  console.log(err))
-    }
-
-    function handleReject() {
-        
-        const quoteResponse = {
-            quoteId: quote.id,
-            accepted: false
-        }
-
-        fetch("quote/quoteResponse", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(quoteResponse)
-        }).then((res) =>  { 
-
-            if(res.status == 200) { alert("Quote Rejected")}
-            else { alert("Quote Not Rejected!")         
-        }}).catch(err =>  console.log(err))
-    }
-    
 
     return (    
    
@@ -118,7 +67,7 @@ export default function QuoteManager(props) {
                 <p className="">{quote.description}</p>
  
             {/*Renders button to accept quote if the request has been processed*/}
-            <AcceptQuote />
+            <LoadButtons />
            
             </div>
         </div>
