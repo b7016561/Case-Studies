@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-
+import { Jumbotron, Container, Image, Row, Col } from 'react-bootstrap';
 export default class Home extends Component {
     render() {
         return (
-         <div>
-                <div className="jumbotron jumbotron-fluid">
-                    <div className="container">
-                        <h1 className="display-4">ABC Energy Limited</h1>
-                        <p className="lead">Here at ABC, we are commited in providing you with the best customer experience. Please login to our new online system to manage your account!</p>
-                        <br></br>
-                    </div>
-                </div>
-                </div>
+            <div className="Home">
+                <Jumbotron fluid>
+                    <Container>
+                        <Row>
+                            <Col id="jumboText">
+                                <h1>ABC Energy Limited</h1>
+                                <p>Here at ABC, we are commited in providing you with the best customer experience. Please login to our new online system to manage your account!</p>
+                            </Col>
+                            <Col>
+                                <Image src="https://www.worldloppet.com/wp-content/uploads/2018/10/no-img-placeholder.png"></Image>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Jumbotron>
+            </div>
         )
     }
 }
