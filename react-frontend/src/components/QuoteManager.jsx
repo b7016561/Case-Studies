@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
-
+import AcceptQuote from '../components/QuoteManagerButtons/AcceptQuote';
+import RejectQuote from '../components/QuoteManagerButtons/RejectQuote';
 
 export default function QuoteManager(props) {
 
@@ -32,37 +33,17 @@ export default function QuoteManager(props) {
     
     },[props.id]) // effect is only called when the request id changes
 
-    function AcceptQuote() {
+    function LoadButtons() {
         if(quote.status == "PROCESSED") {
             return (
-                <Button block size="lg"
-                onClick={handleClick}
-                >
-                Accept Quote
-                </Button>
+                <div>
+                    <AcceptQuote {...quote}/>
+                    <RejectQuote {...quote}/>
+              
+                 </div>
+
             )
         } else { return ( <div></div> ) }
-       
-    }
-
-
-    function handleClick() {
-
-        const id = quote.id;
-
-        console.log("quote id"+ id);
-
-        fetch(`quote/accept${id}`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then((res) =>  { 
-
-            if(res.status == 200) { alert("Quote Accepted")}
-            else { alert("Quote Not Accepted!")         
-        }}).catch(err =>  console.log(err))
        
     }
 
@@ -86,7 +67,7 @@ export default function QuoteManager(props) {
                 <p className="">{quote.description}</p>
  
             {/*Renders button to accept quote if the request has been processed*/}
-            <AcceptQuote />
+            <LoadButtons />
            
             </div>
         </div>
