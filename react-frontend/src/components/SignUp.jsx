@@ -126,12 +126,7 @@ export default function Login(props) {
           name="AddressLine2"
           onChange={onChange}
           defaultValue={user.addressLine2}
-          />
-          {errors?.AddressLine2 ? (
-            <Form.Label className="Error">{errors.AddressLine2[0]}</Form.Label>
-          ) : (
-            []
-          )}
+          />  
         </Form.Group>
 
         <Form.Group size="lg" controlId="AddressLine3">
@@ -142,11 +137,6 @@ export default function Login(props) {
           onChange={onChange}
           defaultValue={user.addressLine3}
           />
-          {errors?.AddressLine3 ? (
-            <Form.Label className="Error">{errors.AddressLine3[0]}</Form.Label>
-          ) : (
-            []
-          )}
         </Form.Group>
 
         <Form.Group size="lg" controlId="City">
