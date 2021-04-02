@@ -9,7 +9,7 @@ export default function QuoteManager(props) {
     const [quote, setQuote] = useState({});
 
 
-    useEffect(() => {
+    useEffect(async () => {
         const token = localStorage.getItem('token');
         if (!token) return;
 
@@ -18,7 +18,7 @@ export default function QuoteManager(props) {
 
         const itemId = props.itemId;
 
-        axios.get(`CatalogItem/${itemId}`,{
+        var response = await axios.get(`CatalogItem/${itemId}`,{
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
