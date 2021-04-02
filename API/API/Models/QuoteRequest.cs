@@ -1,10 +1,12 @@
 ﻿namespace API.Models
 {
-    public class QuoteRequest
+    public class QuoteRequest : QuoteBase
     {
-        public int Id { get; set; }
-        public string ItemId { get; set; }
-        public string Username { get; set; }
-        public string Status { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string AddressLine3 { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string PostCode { get; set; }
     }
 }
