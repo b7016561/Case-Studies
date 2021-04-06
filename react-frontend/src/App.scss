@@ -23,8 +23,8 @@
     width: 100% !important;
 }
 
-.Home p{
-    margin-top: 50px;
+.Home h1{
+    margin-bottom: 25px;
 }
 
 .Home #jumboText{
@@ -148,10 +148,10 @@ img {
         align-items: center;
     }
     .RequestTable {
-        width: 850px !important;
+        width: 80% !important;
     }
     .Wrapper {
-        width: 850px;
+        width: 80%;
         box-shadow: 3px 3px 0.5rem $accent-color !important;
         border: 0px solid $accent-color;
         overflow: auto;
