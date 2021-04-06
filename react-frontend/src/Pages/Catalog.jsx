@@ -43,24 +43,26 @@ class Catalog extends Component {
 
         for (const [index, value] of tickets.entries()) {
             items.push(
-                <Col xs={3}>
+                <Col md={3}>
                     <Product key={index} sendProduct={this.setProduct} productValue={value}></Product>
                 </Col>
             );
         }
 
         return (
-
             <div>
-                <Row className="justify-content-center" style={{ marginLeft: "5px", marginRight: "25px" }}>
-                    <Col xs={3}>
-                        <Card className="defaultCard" style={{ width: "100%", margin: "15px", minHeight:"90%"}} border="secondary">
-                            <Card.Header>ABC Catalog</Card.Header>
-                            <Card.Body>Please choose your desired item and request a quote !</Card.Body>
-                        </Card>
-                    </Col>
-                    {items}
+            <div style={{textAlign: "center"}}>
+                    
+                    <h2>ABC Catalog</h2>
+                    <p>Browse the catalog and select the item you wish to request a for</p>
+                    
+            </div>
+            <div>
+                <Row>
+                {items}
+
                 </Row>
+            </div>
             </div>
         )
     }
