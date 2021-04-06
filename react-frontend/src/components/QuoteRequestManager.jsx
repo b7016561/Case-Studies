@@ -71,7 +71,15 @@ export default function QuoteRequestManager(props) {
             </div>
 
             <div className="QuoteBox">
+                <div style={{"textAlign": "left"}}>
+                    <p><small style={{"fontWeight": "bold"}}>Address Line 1: </small>{request.addressLine1}</p>
+                    <p><small style={{"fontWeight": "bold"}}>Address Line 2: </small>{request.addressLine2}</p>
+                    <p><small style={{"fontWeight": "bold"}}>Address Line 3: </small>{request.addressLine3}</p>
+                    <p><small style={{"fontWeight": "bold"}}>City: </small>{request.city}</p>
+                    <p><small style={{"fontWeight": "bold"}}>Region: </small>{request.region}</p>
+                    <p><small style={{"fontWeight": "bold"}}>Postcode: </small>{request.postCode}</p>
 
+                </div>
                 <Form onSubmit={onSubmit}>
                     <h4>Create Quote</h4>
 

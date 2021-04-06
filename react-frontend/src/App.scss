@@ -122,6 +122,13 @@ $accent-color: #f76540;
     }
 }
 
+
+.Accept-Button:hover {
+    background-color: #4CBB17 !important;
+}
+.Reject-Button:hover {
+    background-color: brown !important;
+}
 .App-link {
     color: #61dafb;
 }

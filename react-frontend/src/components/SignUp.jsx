@@ -31,7 +31,7 @@ export default function Login(props) {
 
   return (
 
-    
+
     <div className="Signup">
       <h4>Signup</h4>
       <Form onSubmit={onSubmit}>
@@ -104,6 +104,86 @@ export default function Login(props) {
           />
           {errors?.Password ? (
             <Form.Label className="Error">{errors.Password[0]}</Form.Label>
+          ) : (
+            []
+          )}
+
+        </Form.Group>
+        <Form.Group size="lg" controlId="AddressLine1">
+          <Form.Label>Address Line 1</Form.Label>
+          <Form.Control
+          type="AddressLine1"
+          name="AddressLine1"
+          onChange={onChange}
+          defaultValue={user.addressLine1}
+          />
+          {errors?.AddressLine1 ? (
+            <Form.Label className="Error">{errors.AddressLine1[0]}</Form.Label>
+          ) : (
+            []
+          )}
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="AddressLine2">
+          <Form.Label>Address Line 2 (optional)</Form.Label>
+          <Form.Control
+          type="AddressLine2"
+          name="AddressLine2"
+          onChange={onChange}
+          defaultValue={user.addressLine2}
+          />
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="AddressLine3">
+          <Form.Label>Address Line 3 (optional)</Form.Label>
+          <Form.Control
+          type="AddressLine3"
+          name="AddressLine3"
+          onChange={onChange}
+          defaultValue={user.addressLine3}
+          />
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="City">
+          <Form.Label>City</Form.Label>
+          <Form.Control
+          type="City"
+          name="City"
+          onChange={onChange}
+          defaultValue={user.city}
+          />
+          {errors?.City ? (
+            <Form.Label className="Error">{errors.City[0]}</Form.Label>
+          ) : (
+            []
+          )}
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="Region">
+          <Form.Label>Region</Form.Label>
+          <Form.Control
+          type="Region"
+          name="Region"
+          onChange={onChange}
+          defaultValue={user.region}
+          />
+          {errors?.Region ? (
+            <Form.Label className="Error">{errors.Region[0]}</Form.Label>
+          ) : (
+            []
+          )}
+        </Form.Group>
+
+        <Form.Group size="lg" controlId="Postcode">
+          <Form.Label>Postcode</Form.Label>
+          <Form.Control
+          type="Postcode"
+          name="Postcode"
+          onChange={onChange}
+          defaultValue={user.postcode}
+          />
+          {errors?.Postcode ? (
+            <Form.Label className="Error">{errors.Postcode[0]}</Form.Label>
           ) : (
             []
           )}
