@@ -9,7 +9,7 @@ export default class Home extends Component {
                         <Row>
                             <Col id="jumboText">
                                 <h1>ABC Energy Limited</h1>
-                                <p>Here at ABC, we are commited in providing you with the best customer experience.</p> <p> Please login to our new online system to manage your account!</p>
+                                <p>Here at ABC, we are commited in providing you with the best customer experience. Please login to our new online system to manage your account!</p>
                                 <Button>Learn More</Button>
                             </Col>
                             <Col>
