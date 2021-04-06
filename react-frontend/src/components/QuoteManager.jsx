@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Form, Button} from 'react-bootstrap';
 import AcceptQuote from '../components/QuoteManagerButtons/AcceptQuote';
 import RejectQuote from '../components/QuoteManagerButtons/RejectQuote';
 
@@ -10,16 +9,14 @@ export default function QuoteManager(props) {
     const [quote, setQuote] = useState({});
 
 
-    useEffect(async () => {
-        const token = localStorage.getItem('token');
-
+    useEffect(() => {
 
         const currentQuote = props;
         setQuote(currentQuote);
 
         const itemId = props.itemId;
 
-        var response = await axios.get(`CatalogItem/${itemId}`,{
+        axios.get(`CatalogItem/${itemId}`,{
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -34,7 +31,7 @@ export default function QuoteManager(props) {
     },[props.id]) // effect is only called when the request id changes
 
     function LoadButtons() {
-        if(quote.status == "PROCESSED") {
+        if(quote.status === "PROCESSED") {
             return (
                 <div>
                     <AcceptQuote {...quote}/>

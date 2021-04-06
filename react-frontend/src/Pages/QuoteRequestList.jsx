@@ -36,7 +36,7 @@ export default function QuoteRequestList(props) {
     
     function DisplayManager()
     {
-        if(isSelected == true) { return (<QuoteRequestManager {...quoteRequest}/>) } 
+        if(isSelected === true) { return (<QuoteRequestManager {...quoteRequest}/>) } 
         else { return (<div></div>)}
     }
 

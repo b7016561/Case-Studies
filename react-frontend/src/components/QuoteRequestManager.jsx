@@ -11,7 +11,6 @@ export default function QuoteRequestManager(props) {
     const [item, setItem] = useState({});
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
 
         const currentRequest = props;
         setRequest(currentRequest);
@@ -49,12 +48,11 @@ export default function QuoteRequestManager(props) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(quote)
-        }).then((res) => {
-            if (res.status == 200) { alert("Quote Created") }
-            else {
-                alert("Quote Not Created!")
-            }
-        }).catch(err => console.log(err))
+        }).then((res) =>  {
+
+            if(res.status === 200) { alert("Quote Created")}
+            else { alert("Quote Not Created!")
+        }}).catch(err =>  console.log(err))
     }
 
     return (
@@ -89,8 +87,8 @@ export default function QuoteRequestManager(props) {
                         <Form.Label>Cost</Form.Label>
                         <Form.Control
                             type="text"
-                            onChange={(event) => setCost(event.target.value)} // calling event handler   
-                            defaultValue={cost}  // global variable 
+                            onChange={(event) => setCost(event.target.value)} // calling event handler
+                            defaultValue={cost}  // global variable
                         />
                     </Form.Group>
 
@@ -98,8 +96,8 @@ export default function QuoteRequestManager(props) {
                         <Form.Label>Description</Form.Label>
                         <Form.Control
                             type="text"
-                            onChange={(event) => setDescription(event.target.value)} // calling event handler   
-                            defaultValue={description}  // global variable 
+                            onChange={(event) => setDescription(event.target.value)} // calling event handler
+                            defaultValue={description}  // global variable
                         />
                     </Form.Group>
 

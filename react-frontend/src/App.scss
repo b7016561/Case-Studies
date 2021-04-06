@@ -54,6 +54,25 @@ a{
     text-decoration: white !important;
 }
 
+$accent-color: #f76540;
+.btn-secondary {
+    background: $accent-color !important;
+    border-color: #fff !important;
+    color: white !important;
+    &:hover,
+    &:focus,
+    &.focus {
+        background: darken($accent-color, 20%) !important;
+        border-color: none !important;
+        color: white !important;
+        //background-color: $accent-color-lighter !important;
+        //border-color: $accent-color-lighter-50alpha !important;
+        &:focus,
+        &.focus {
+            box-shadow: 0 0 0 0.2rem $accent-color !important;
+        }
+    }
+}
 .cards{
     padding-top: 5%;
 }
@@ -64,7 +83,13 @@ a{
     text-align: center;
     color: black;
     margin: 50px;
-    background-color: lightgray !important;
+    //background-color: lightgray !important;
+    border-width: 5px;
+    border-color: $accent-color !important;
+}
+.card-header {
+    background-color: $accent-color !important;
+    color: whitesmoke;
 }
 
 .Nav {
@@ -85,25 +110,7 @@ a{
     font-weight: bold;
 }
 
-$accent-color: #f76540;
-.btn-secondary {
-    background: $accent-color !important;
-    border-color: #fff !important;
-    color: white !important;
-    &:hover,
-    &:focus,
-    &.focus {
-        background: darken($accent-color, 20%) !important;
-        border-color: none !important;
-        color: white !important;
-        //background-color: $accent-color-lighter !important;
-        //border-color: $accent-color-lighter-50alpha !important;
-        &:focus,
-        &.focus {
-            box-shadow: 0 0 0 0.2rem $accent-color !important;
-        }
-    }
-}
+
 
 .btn-primary {
     background: none !important;
