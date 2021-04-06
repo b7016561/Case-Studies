@@ -13,7 +13,7 @@ export default class Home extends Component {
                                 <Button>Learn More</Button>
                             </Col>
                             <Col>
-                                <Image src="https://www.worldloppet.com/wp-content/uploads/2018/10/no-img-placeholder.png"></Image>
+                                <Image src="https://static1.squarespace.com/static/5ad0c317c258b4273c536d84/t/5bb660d7652dea6de23b28ea/1596206567201/?format=1500w"></Image>
                             </Col>
                         </Row>
                     </Container>

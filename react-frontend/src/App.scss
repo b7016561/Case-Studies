@@ -1,8 +1,3 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
@@ -21,6 +16,11 @@
 
 .Home img{
     width: 100% !important;
+    object-fit: contain;
+}
+
+.Home .jumbotron{
+    background-color: white !important;
 }
 
 .Home p{
@@ -30,7 +30,9 @@
 .Home #jumboText{
     margin-top: 100px;
 }
-
+.jumbotron{
+    background-color: white;
+}
 .Login {
     padding: 60px 0;
 }
@@ -155,41 +157,31 @@ img {
         align-items: center;
     }
     .RequestTable {
-        width: 850px !important;
+        width: 80% !important;
     }
     .Wrapper {
-        width: 850px;
+        width: 80%;
         box-shadow: 3px 3px 0.5rem $accent-color !important;
         border: 0px solid $accent-color;
-        overflow: auto;
         text-align: center;
         justify-content: center;
+        margin-bottom: 20px;
     }
     .ItemBox {
-        width: 400px;
-        float: left;
-        text-align: left;
-        //border: 1px solid red;
         padding: 30px 25px 20px 20px;
         padding-left: 20px;
     }
     .QuoteBox {
-        width: 400px;
         padding-top: 50px;
-        //border: 1px solid green;
-        float: left;
     }
     .RequestWrapper {
-        width: 850px;
         box-shadow: 3px 3px 0.5rem $accent-color !important;
         border: 0px solid $accent-color;
-        overflow: auto;
         text-align: center;
         justify-content: center;
         padding-bottom: 10px;
     }
     .ItemInfo {
-        width: 400px;
         float: left;
         text-align: left;
         //border: 1px solid red;
