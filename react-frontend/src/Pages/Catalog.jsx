@@ -3,8 +3,6 @@ import axios from 'axios';
 import Product from '../components/Product';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import CatalogueItem from './CatalogueItem'
 
 class Catalog extends Component {
 

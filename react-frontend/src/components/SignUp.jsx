@@ -19,10 +19,12 @@ export default function Login(props) {
     switch (response.status) {
       case 200:
         props.history.push("login");
-      case 400:
+        break;
+      default:
         var errors = (await response.json()).errors;
         console.log(errors);
         setErrors(errors);
+
     }
   };
 

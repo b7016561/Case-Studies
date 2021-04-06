@@ -11,7 +11,6 @@ export default function QuotesList() {
     const [isSelected, setSelected] = useState(false);
     
     useEffect(() => {
-        const token = localStorage.getItem('token');
 
         axios.get('/Quote',{
             headers: {
@@ -30,7 +29,7 @@ export default function QuotesList() {
     }
 
     function DisplayManager() {
-        if(isSelected == true)
+        if(isSelected === true)
         {
             return (<QuoteManager {...selectedQuote} /> )
         } else { return( <div> </div>)}

@@ -8,8 +8,6 @@ export default function CatalogueItem(props) {
     const [item, setItem] = useState({});
  
     useEffect(() => {
-        const token = localStorage.getItem('token');
-
 
         setItem(props)
         const urlParams = new URLSearchParams(props.location.search);
@@ -43,7 +41,7 @@ export default function CatalogueItem(props) {
             body: JSON.stringify(itemId)
         }).then((res) => {
 
-            if(res.status == 200) { alert("Request Created")}
+            if(res.status === 200) { alert("Request Created")}
             else { alert("Requested Not Created!")}
             props.history.push("catalogue");
 

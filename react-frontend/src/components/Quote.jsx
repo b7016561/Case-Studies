@@ -23,6 +23,10 @@ const Quote = (props) => {
           return (
             <td style={{backgroundColor: '#4CBB17'}}>{props.status}</td>
           )
+          default: 
+          return (
+           <td style={{backgroundColor: '#D0312D'}}>No Status</td>
+         )
      }
   }
 

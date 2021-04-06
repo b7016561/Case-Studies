@@ -27,7 +27,7 @@ export default function AcceptQuote(props) {
             body: JSON.stringify(quoteResponse)
         }).then((res) =>  { 
 
-            if(res.status == 200) { alert("Quote Accepted")}
+            if(res.status === 200) { alert("Quote Accepted")}
             else { alert("Quote Not Accepted!")         
         }}).catch(err =>  console.log(err))
     }

@@ -28,7 +28,7 @@ export default function RejectQuote(props) {
             body: JSON.stringify(quoteResponse)
         }).then((res) =>  { 
 
-            if(res.status == 200) { alert("Quote Rejected")}
+            if(res.status === 200) { alert("Quote Rejected")}
             else { alert("Quote Not Rejected!")         
         }}).catch(err =>  console.log(err))
     }

@@ -12,7 +12,6 @@ export default function QuoteRequestManager(props) {
 
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
 
         const currentRequest = props;
         setRequest(currentRequest);
@@ -53,7 +52,7 @@ export default function QuoteRequestManager(props) {
             body: JSON.stringify(quote)
         }).then((res) =>  { 
 
-            if(res.status == 200) { alert("Quote Created")}
+            if(res.status === 200) { alert("Quote Created")}
             else { alert("Quote Not Created!")         
         }}).catch(err =>  console.log(err))
     }
