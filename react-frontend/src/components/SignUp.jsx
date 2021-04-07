@@ -35,7 +35,7 @@ export default function Login(props) {
 
 
     <div className="Signup">
-      <h4>Signup</h4>
+      <h4>Sign Up</h4>
       <Form onSubmit={onSubmit}>
         <Row>
       <Col>
@@ -211,7 +211,7 @@ export default function Login(props) {
         </Row>
         <div style={{paddingTop:"12%"}}>
         <Button block size="lg" type="submit">
-          SignUp
+          Sign Up
         </Button>
         </div>
       </Form>

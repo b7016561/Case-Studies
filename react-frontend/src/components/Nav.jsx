@@ -103,7 +103,7 @@ export default function Nav(props) {
                     onClick={Login}
                 >Login</Button>
 
-                <Button variant="secondary" onClick={SignUp} >Signup</Button>
+                <Button variant="secondary" onClick={SignUp} >Sign Up</Button>
             </div>
         )
     }
