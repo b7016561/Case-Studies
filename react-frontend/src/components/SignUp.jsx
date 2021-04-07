@@ -114,7 +114,6 @@ export default function Login(props) {
           ) : (
             []
           )}
-
         </Form.Group>
         <Form.Group size="lg" controlId="AddressLine1">
           <Form.Label>Address Line 1</Form.Label>
@@ -131,7 +130,8 @@ export default function Login(props) {
             []
           )}
         </Form.Group>
-
+        </Col>
+        <Col>
         <Form.Group size="lg" controlId="AddressLine2">
           <Form.Label>Address Line 2 (optional)</Form.Label>
           <Form.Control
@@ -199,8 +199,6 @@ export default function Login(props) {
             []
           )}
         </Form.Group>
-        </Col>
-        <Col>
         <Form.Label>Account Type</Form.Label>
         <Form.Group size="lg" controlId="AccountType">
             <Form.Control as="select">
@@ -210,10 +208,12 @@ export default function Login(props) {
             </Form.Control>
         </Form.Group>
         </Col>
+        </Row>
+        <div style={{paddingTop:"12%"}}>
         <Button block size="lg" type="submit">
           SignUp
         </Button>
-        </Row>
+        </div>
       </Form>
     </div>
   );
