@@ -89,6 +89,7 @@ export default function QuoteRequestManager(props) {
                             type="text"
                             onChange={(event) => setCost(event.target.value)} // calling event handler
                             defaultValue={cost}  // global variable
+                            required
                         />
                     </Form.Group>
 
@@ -98,6 +99,7 @@ export default function QuoteRequestManager(props) {
                             type="text"
                             onChange={(event) => setDescription(event.target.value)} // calling event handler
                             defaultValue={description}  // global variable
+                            required
                         />
                     </Form.Group>
 

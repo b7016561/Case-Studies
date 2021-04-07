@@ -47,6 +47,7 @@ export default function Login(props) {
             name="firstName"
             onChange={onChange}
             defaultValue={user.firstName}
+            required
           />
           {errors?.FirstName ? (
             <Form.Label className="Error">{errors.FirstName[0]}</Form.Label>
@@ -61,6 +62,7 @@ export default function Login(props) {
             name="lastName"
             onChange={onChange}
             defaultValue={user.lastName}
+            required
           />
           {errors?.LastName ? (
             <Form.Label className="Error">{errors.LastName[0]}</Form.Label>
@@ -75,6 +77,7 @@ export default function Login(props) {
             name="Email"
             onChange={onChange}
             defaultValue={user.email}
+            required
           />
           {errors?.Email ? (
             <Form.Label className="Error">{errors.Email[0]}</Form.Label>
@@ -89,6 +92,7 @@ export default function Login(props) {
             name="username"
             onChange={onChange}
             defaultValue={user.username}
+            required
           />
           {errors?.Username ? (
             <Form.Label className="Error">{errors.Username[0]}</Form.Label>
@@ -103,6 +107,7 @@ export default function Login(props) {
             name="password"
             onChange={onChange}
             defaultValue={user.password}
+            required
           />
           {errors?.Password ? (
             <Form.Label className="Error">{errors.Password[0]}</Form.Label>
@@ -118,6 +123,7 @@ export default function Login(props) {
           name="AddressLine1"
           onChange={onChange}
           defaultValue={user.addressLine1}
+          required
           />
           {errors?.AddressLine1 ? (
             <Form.Label className="Error">{errors.AddressLine1[0]}</Form.Label>
@@ -153,6 +159,7 @@ export default function Login(props) {
           name="City"
           onChange={onChange}
           defaultValue={user.city}
+          required
           />
           {errors?.City ? (
             <Form.Label className="Error">{errors.City[0]}</Form.Label>
@@ -168,6 +175,7 @@ export default function Login(props) {
           name="Region"
           onChange={onChange}
           defaultValue={user.region}
+          required
           />
           {errors?.Region ? (
             <Form.Label className="Error">{errors.Region[0]}</Form.Label>
@@ -183,6 +191,7 @@ export default function Login(props) {
           name="Postcode"
           onChange={onChange}
           defaultValue={user.postcode}
+          required
           />
           {errors?.Postcode ? (
             <Form.Label className="Error">{errors.Postcode[0]}</Form.Label>

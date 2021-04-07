@@ -52,6 +52,7 @@ export default function Login(props) {
               type="text"
               onChange={(event) => setUser({ ...user, username: event.target.value })} // calling event handler   
               defaultValue={user.username}  // global variable 
+              required
             />
           </Form.Group>
           <Form.Group size="lg" controlId="Password">
@@ -60,6 +61,7 @@ export default function Login(props) {
               type="password"
               onChange={(event) => setUser({ ...user, password: event.target.value })} // calling event handler   
               defaultValue={user.password}  // global variable 
+              required
             />
           </Form.Group>
           <Button block size="lg" type="submit">
