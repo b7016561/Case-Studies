@@ -11,7 +11,6 @@ export default function QuotesList() {
     const [isSelected, setSelected] = useState(false);
     
     useEffect(() => {
-
         axios.get('/Quote',{
             headers: {
             'Content-Type': 'application/json',

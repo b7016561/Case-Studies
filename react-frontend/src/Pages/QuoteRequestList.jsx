@@ -33,7 +33,6 @@ export default function QuoteRequestList(props) {
         setSelected(true);
     }
 
-    
     function DisplayManager()
     {
         if(isSelected === true) { return (<QuoteRequestManager {...quoteRequest}/>) } 
@@ -62,12 +61,9 @@ export default function QuoteRequestList(props) {
                     }
                 </tbody>
             </Table>    
-
         </div>
         {/*Conditional Rendering for quote request manager */}
         <DisplayManager />
-        
-
         </div>   
     )
 }

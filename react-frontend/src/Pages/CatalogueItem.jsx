@@ -50,24 +50,18 @@ export default function CatalogueItem(props) {
 
     return (
         <div className='Component'>
-
             <div className="RequestWrapper">
             <h4>{item.name}</h4>
-
                     <div className="ItemInfo">
                         <p>{item.description}</p>
                         <p>{item.itemCost}</p>
-                        
                     </div>
                     <div className="ImageBox">
-
                         <img src={item.imageUrl} alt={item.name}></img>
                         <Button block size="lg" 
                         onClick={RequestQuote}
                         >Request Quote
                         </Button>
-                    
-
                     </div>
             </div>
         </div> 

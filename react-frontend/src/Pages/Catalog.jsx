@@ -58,7 +58,6 @@ class Catalog extends Component {
             <div>
                 <Row>
                 {items}
-
                 </Row>
             </div>
             </div>
