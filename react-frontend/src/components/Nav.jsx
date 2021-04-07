@@ -42,8 +42,8 @@ export default function Nav(props) {
     function Quotes() {
         props.history.push("quotes")
     }
-    function Catalogue() {
-        props.history.push("catalogue")
+    function Dashboard() {
+        props.history.push("dashboard")
     }
 
     function SignOut() {
@@ -86,8 +86,8 @@ export default function Nav(props) {
 
                 <Button
                     variant="secondary"
-                    onClick={Catalogue}
-                >Catalogue
+                    onClick={Dashboard}
+                >Dashboard
                 </Button>
             </div>
         )
