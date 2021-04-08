@@ -5,7 +5,7 @@ export default function Product(props) {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    console.log(props.productValue);
+    //sets the product information 
     setProduct(props.productValue);
   }, [props.id]);
 
@@ -14,10 +14,7 @@ export default function Product(props) {
   }
 
   return (
-    <Card
-      style={{ width: "100%", margin: "15px", height: "475px" }}
-      onClick={sendProduct}
-    >
+    <Card style={{ width: "100%", margin: "15px", height: "475px" }} onClick={sendProduct}>
       <Card.Header>{product.name}</Card.Header>
       <Card.Body style={{paddingBottom: "15px !important"}}> 
         <img style={{ height: "350px ", width: "250px"}}src={product.imageUrl} alt={product.name}></img>

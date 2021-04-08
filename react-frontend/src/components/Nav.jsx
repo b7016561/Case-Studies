@@ -108,8 +108,8 @@ export default function Nav(props) {
         )
     }
 
+    //switch to display the correct Nav for the user type
     function DisplayNav() {
-
         switch (userInfo.accountType) {
             case 'E':
                 return (<EmpNav />)
@@ -123,7 +123,6 @@ export default function Nav(props) {
     }
 
     return (
-
         <div className="Nav row m-3">
             <svg id="Logo">
                 <a href='/'>

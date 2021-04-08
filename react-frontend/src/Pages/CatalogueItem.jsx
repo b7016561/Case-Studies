@@ -10,9 +10,10 @@ export default function CatalogueItem(props) {
     useEffect(() => {
 
         setItem(props)
-        const urlParams = new URLSearchParams(props.location.search);
-        const id = urlParams.get('id');
+        const urlParams = new URLSearchParams(props.location.search); //parameters sent through url
+        const id = urlParams.get('id'); // ItemId
 
+        //get catalogue item from backend
         axios.get(`CatalogItem/${id}`,{
             headers: {
                 'Content-Type': 'application/json',

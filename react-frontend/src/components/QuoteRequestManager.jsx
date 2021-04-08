@@ -104,7 +104,6 @@ export default function QuoteRequestManager(props) {
                             required
                         />
                     </Form.Group>
-                    
                     <Button block size="lg" type="submit">
                         Send
                     </Button>

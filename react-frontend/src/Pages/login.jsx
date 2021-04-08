@@ -20,10 +20,7 @@ export default function Login(props) {
             .then((response) => {
                 if (response.status === 200) {
                     response.json().then(data => {
-                        localStorage.setItem('token', data.token)
-
-                        console.log("Logged in user: " + data.user.username)
-
+                        localStorage.setItem('token', data.token) // setting token in local storage
                         // setting logged in user for Router.
                         props.setLoggedUser(data.user);
 
@@ -43,6 +40,7 @@ export default function Login(props) {
     }
 
     return (
+      //login form
         <div className="Login">
         <Form onSubmit={onSubmit}>
           <Form.Group size="lg" controlId="Username">
@@ -64,9 +62,7 @@ export default function Login(props) {
               required
             />
           </Form.Group>
-          <Button block size="lg" type="submit">
-            Login
-        </Button>
+          <Button block size="lg" type="submit">Login</Button>
         </Form>
       </div>
     )

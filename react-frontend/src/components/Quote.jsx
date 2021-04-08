@@ -9,6 +9,7 @@ const Quote = (props) => {
   }
 
   function StatusCell() {
+    //switch statement for possible status of quote
      switch(props.status) {
         case 'PENDING':
           return (

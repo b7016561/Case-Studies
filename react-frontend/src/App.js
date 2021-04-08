@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.scss";
-import Login from "./components/login";
-import SignUp from "./components/SignUp";
+import Login from "./Pages/login";
+import SignUp from "./Pages/SignUp";
 import Home from "./Pages/Home";
 import Catalog from "./Pages/Catalog";
 import CatalogueItem from "./Pages/CatalogueItem";
