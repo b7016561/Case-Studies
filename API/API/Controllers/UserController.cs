@@ -8,7 +8,9 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Text;
+using System.Security;
+using System.Security.Cryptography;
 namespace API.Controllers
 {
     [ApiController]
@@ -20,13 +22,31 @@ namespace API.Controllers
         private readonly IStoredProcedureExecutor _sprExecutor;
         private readonly IJwtTokenBuilder _jwtTokenBuilder;
 
+
         public UserController(ILogger<UserController> logger, IStoredProcedureExecutor sprExecutor, IJwtTokenBuilder jwtTokenBuilder)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _sprExecutor = sprExecutor ?? throw new ArgumentNullException(nameof(sprExecutor));
             _jwtTokenBuilder = jwtTokenBuilder ?? throw new ArgumentNullException(nameof(jwtTokenBuilder));
         }
+        //Hashes a users password input to check against the database 
+        static string Hash(string input)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sb = new StringBuilder(hash.Length * 2);
+                string final;
 
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("X2"));
+                }
+                final = "0x" + sb.ToString();
+                return final.Substring(0, 20);
+            }
+        }
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
@@ -34,9 +54,10 @@ namespace API.Controllers
         {
             _logger.LogInformation("Login");
 
+
             // Build query parameters
-            var param = new { username = loginRequest.Username, password = loginRequest.Password };
-            
+            var param = new { username = loginRequest.Username, password = Hash(loginRequest.Password) };
+
             // Execute stored procedure
             var user = await _sprExecutor.QuerySingleOrDefault<User>("sprGetUser", param);
 
@@ -47,8 +68,8 @@ namespace API.Controllers
             }
 
             // Build response
-            var response = new 
-            { 
+            var response = new
+            {
                 user,
                 token = _jwtTokenBuilder.Build(user.Username, user.AccountType.ToString())
             };
