@@ -11,7 +11,9 @@ using System;
 using System.Threading.Tasks;
 using Test.API.Helpers;
 using Xunit;
-
+using System.Text;
+using System.Security;
+using System.Security.Cryptography;
 namespace Test.API
 {
     public class UserControllerTests
@@ -26,7 +28,24 @@ namespace Test.API
             _logger = new Mock<ILogger<UserController>>().Object;
             _jwtTokenBuilder = new Mock<IJwtTokenBuilder>().Object;
         }
+        //Hashes a users password input to check against the database 
+        static string Hash(string input)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sb = new StringBuilder(hash.Length * 2);
+                string final;
 
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("X2"));
+                }
+                final = "0x" + sb.ToString();
+                return final.Substring(0, 20);
+            }
+        }
         [Fact]
         public async void WhenTheLoginMethodIsCalled_ThenTheExpectedStoredProcedureIsCalledWithTheExpectedParameters()
         {
@@ -54,7 +73,7 @@ namespace Test.API
             var expectedParams = new
             {
                 username = loginRequest.Username,
-                password = loginRequest.Password,
+                password = Hash(loginRequest.Password),
             };
 
             _sprExecutorMock.Verify(Mock => 

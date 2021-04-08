@@ -2,21 +2,21 @@
 GO
 -- User Table Insert
 INSERT INTO  [dbo].[User] ([UserName], [FirstName], [LastName], [Email], [UserPassword], [AccountType])
-VALUES ('jsmith248', 'John', 'Smith', 'jsmith248@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password1'), 1), 'U'),
-('ldavies043', 'Lisa', 'Davies', 'ldavies043@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password2'), 1), 'U'),
-('ashaw639', 'Aaron', 'Shaw', 'ashaw639@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password3'), 1), 'E'),
-('djones517', 'Drew', 'Jones', 'djones517@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password4'), 1), 'S')
+VALUES ('jsmith248', 'John', 'Smith', 'jsmith248@gmail.com', 'Password1', 'U'),
+('ldavies043', 'Lisa', 'Davies', 'ldavies043@gmail.com', 'Password2', 'U'),
+('ashaw639', 'Aaron', 'Shaw', 'ashaw639@gmail.com', 'Password3', 'E'),
+('djones517', 'Drew', 'Jones', 'djones517', 'Password4', 'S')
 GO
 -- Item Table Insert
 INSERT INTO  [dbo].[Item] ([ItemID], [ItemName], [ItemDescription], [ItemImageURL], [ItemCost])
 VALUES ('ITM001', 
-'Worcester Greenstar 30i 30kW Combi Boiler',
+'Worcester Greenstar 30i 30kW Combi Boiler 7733600005 - 968497',
 'The Worcester Greenstar 30i is a 30kW combi boiler that builds on the popular features of the market-leading Greenstar i Junior, while introducing a host of improvements. The Greenstar features enhanced performance and energy efficiency, increased flow rates and a user friendly control panel and is easy to install and maintain. The high efficiency WB3 heat exchanger and low energy modulating pump ensure that the Greenstar i uses less energy and complies with the ErP Directive. With a full 5 year guarantee on parts and labour, it is an ideal choice.',
 'https://dam.cityplumbing.co.uk/wmd8j/GPID_1000736912_IMG_00.jpeg',
 '1092'),
 
 ('ITM002', 
-'Worcester Greenstar 8000 Style 30kW Combination Boiler Black Natural Gas',
+'Worcester Greenstar 8000 Style 30kW Combination Boiler Black Natural Gas - 7738100832',
 'Introducing the Worcester 8000 Style Combi range with a fantastic new design, greater connectivity with the Comfort II controls. Worcester have also made the Style range one of their quietest boilers to date. So it can sit comfortably in any room of your home to keep you cosy in the cold winter months. For complete peace of mind, you can also receive up to a 10 year guarantee* on the Style range.',
 'https://cdn.plumbnation.co.uk/site/worcester-greenstar-8000-style-30kw-combination-boiler-black-natural-gas/large-style-black-side.png',
 '1269.98'),
@@ -28,7 +28,7 @@ VALUES ('ITM001',
 '1059.99'),
 
 ('ITM004',
-'Vaillant ecoTEC Plus 838 Combination Boiler Natural Gas ErP',
+'Vaillant ecoTEC Plus 838 Combination Boiler Natural Gas ErP - 0010021826',
 'The Vaillant ecoTEC plus range of high efficiency boilers combine fantastic efficiency levels and high performance with great usability. Thanks to continuous modulation and real combustion control by a multi-sensor system, they achieve high efficiency at the lowest emissions.',
 'https://cdn.plumbnation.co.uk/site/vaillant-ecotec-plus-838-combination-boiler-natural-gas-erp/large-vaillant-plus-1.JPG',
 '1462.79'),
@@ -40,7 +40,7 @@ VALUES ('ITM001',
 '884.99'),
 
 ('ITM006',
-'Worcester Greenstar 2000 25kW Boiler',
+'Worcester Greenstar 2000 25kW Boiler 7736902099 - 479583',
 'The Greenstart 2000 Series Is Worcester Bosch’s Most Price Competitive Combi Boiler, Suitable For Apartments, Small And Medium Sized Homes With One Bathroom. Designed To Be Accessible For All, The Greenstar 2000 Offers Every Home Greater Choice And The Opportunity To Have A Market Leading, Reliable Worcester Bosch Boiler.',
 'https://dam.cityplumbing.co.uk/bmjDB/GPID_1100653424_IMG_00.jpeg',
 '718')

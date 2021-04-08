@@ -60,6 +60,7 @@
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Procedures" />
     <Folder Include="Scripts\" />
+    <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -91,8 +92,20 @@
     <Build Include="dbo\Procedures\sprInsertUser.sql" />
     <Build Include="dbo\Procedures\sprGetUsername.sql" />
     <Build Include="dbo\Procedures\sprGetEmail.sql" />
-  </ItemGroup>
-  <ItemGroup>
+    <Build Include="dbo\Views\AllUsersQuotesView.sql" />
+    <Build Include="dbo\Views\AllUsersView.sql" />
+    <Build Include="dbo\Views\CustomersView.sql" />
+    <Build Include="dbo\Views\EmployeesView.sql" />
+    <Build Include="dbo\Views\ItemsView.sql" />
+    <Build Include="dbo\Views\PaymentMethodsView.sql" />
+    <Build Include="dbo\Views\PendingUsersQuotesView.sql" />
+    <Build Include="dbo\Views\ProcessedUsersQuotesView.sql" />
+    <Build Include="dbo\Views\QuotesView.sql" />
+    <Build Include="dbo\Views\SuppliersItemsView.sql" />
+    <Build Include="dbo\Views\SuppliersView.sql" />
+    <Build Include="dbo\Views\UsersAddressView.sql" />
+    <Build Include="dbo\Views\UsersPendingQuoteItemsView.sql" />
+    <Build Include="dbo\Views\UsersProcessedQuoteItemsView.sql" />
     <None Include="InsertStatements.sql" />
   </ItemGroup>
 </Project>
