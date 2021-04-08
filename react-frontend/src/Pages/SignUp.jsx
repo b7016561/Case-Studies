@@ -131,8 +131,8 @@ export default function Login(props) {
           )}
         </Form.Group>
         </Col>
-        <Col>
-        <Form.Group size="lg" controlId="AddressLine2">
+        <Col style={{marginTop:"35px"}}>
+        <Form.Group size="lg" cotrolId="AddressLine2">
           <Form.Label>Address Line 2 (optional)</Form.Label>
           <Form.Control
           type="AddressLine2"
