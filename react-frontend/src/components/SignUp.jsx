@@ -35,10 +35,10 @@ export default function Login(props) {
 
 
     <div className="Signup">
-      <h4>Sign Up</h4>
       <Form onSubmit={onSubmit}>
         <Row>
       <Col>
+      <h4>Sign Up</h4>
         <Form.Group size="lg" controlId="FirstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control

@@ -14,27 +14,46 @@
     color: black;
 }
 
-.Home img{
+/*@media (max-width: 100px) {*/
+    .Dashboard h3 {
+       text-align: center;
+    }
+    .Dashboard p {
+      text-align: center;
+    }
+    .Dashboard button {
+        margin: auto !important;
+    }
+/*}*/
+
+.Home img {
     width: 100% !important;
     object-fit: contain;
 }
 
-.Home .jumbotron{
+.Home .jumbotron {
     background-color: white !important;
 }
 
-.Home p{
+.Home p {
     margin-top: 50px;
 }
 
-.Home #jumboText{
+.Home #jumboText {
     margin-top: 100px;
 }
-.jumbotron{
+
+.jumbotron {
     background-color: white;
 }
+
 .Login {
     padding: 60px 0;
+}
+
+form {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .Login form {
@@ -47,10 +66,12 @@
     max-width: 700px;
 }
 
-.Signup h4 {
-    padding-left: 450px;
+.row {
+    margin-left: unset !important;
+    margin-right: unset !important;
 }
-a{
+
+a {
     text-decoration: white !important;
 }
 
@@ -73,7 +94,8 @@ $accent-color: #f76540;
         }
     }
 }
-.cards{
+
+.cards {
     padding-top: 5%;
 }
 
@@ -87,6 +109,7 @@ $accent-color: #f76540;
     border-width: 5px;
     border-color: $accent-color !important;
 }
+
 .card-header {
     background-color: $accent-color !important;
     color: whitesmoke;
@@ -110,8 +133,6 @@ $accent-color: #f76540;
     font-weight: bold;
 }
 
-
-
 .btn-primary {
     background: none !important;
     border: white !important;
@@ -131,13 +152,14 @@ $accent-color: #f76540;
     }
 }
 
-
 .Accept-Button:hover {
     background-color: #4CBB17 !important;
 }
+
 .Reject-Button:hover {
     background-color: brown !important;
 }
+
 .App-link {
     color: #61dafb;
 }

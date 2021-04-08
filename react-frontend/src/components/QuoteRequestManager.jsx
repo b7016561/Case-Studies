@@ -48,16 +48,18 @@ export default function QuoteRequestManager(props) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(quote)
-        }).then((res) =>  {
+        }).then((res) => {
 
-            if(res.status === 200) { alert("Quote Created")}
-            else { alert("Quote Not Created!")
-        }}).catch(err =>  console.log(err))
+            if (res.status === 200) { alert("Quote Created") }
+            else {
+                alert("Quote Not Created!")
+            }
+        }).catch(err => console.log(err))
     }
 
     return (
         <div className="Wrapper">
-        <Row>
+            <Row>
                 <Col>
                     <div className="ItemBox">
                         <small style={{ fontWeight: 'bold' }}>Item Name</small>
@@ -70,16 +72,16 @@ export default function QuoteRequestManager(props) {
                 </Col>
                 <Col>
                     <div className="ItemBox">
-                            <p><small style={{ "fontWeight": "bold" }}>Address Line 1: </small>{request.addressLine1}</p>
-                            <p><small style={{ "fontWeight": "bold" }}>Address Line 2: </small>{request.addressLine2}</p>
-                            <p><small style={{ "fontWeight": "bold" }}>Address Line 3: </small>{request.addressLine3}</p>
-                            <p><small style={{ "fontWeight": "bold" }}>City: </small>{request.city}</p>
-                            <p><small style={{ "fontWeight": "bold" }}>Region: </small>{request.region}</p>
-                            <p><small style={{ "fontWeight": "bold" }}>Postcode: </small>{request.postCode}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>Address Line 1: </small>{request.addressLine1}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>Address Line 2: </small>{request.addressLine2}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>Address Line 3: </small>{request.addressLine3}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>City: </small>{request.city}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>Region: </small>{request.region}</p>
+                        <p><small style={{ "fontWeight": "bold" }}>Postcode: </small>{request.postCode}</p>
                     </div>
                 </Col>
-                </Row>
-                <div className="ItemBox">
+            </Row>
+            <div className="ItemBox">
                 <Form onSubmit={onSubmit}>
                     <h4>Create Quote</h4>
 
@@ -102,13 +104,12 @@ export default function QuoteRequestManager(props) {
                             required
                         />
                     </Form.Group>
-
+                    
                     <Button block size="lg" type="submit">
                         Send
                     </Button>
-
                 </Form>
-                </div>
+            </div>
         </div>
 
     );
