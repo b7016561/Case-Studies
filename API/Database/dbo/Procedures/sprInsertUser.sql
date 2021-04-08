@@ -11,9 +11,15 @@
 	@Region VARCHAR(40),
 	@PostCode VARCHAR(10)
 AS
-	INSERT INTO [User] (UserName, FirstName, LastName, Email, UserPassword, AccountType)
-	VALUES (@Username, @FirstName, @LastName, @Email, @Password, 'U')
+	BEGIN
+
+        INSERT INTO [User] (UserName, FirstName, LastName, Email, UserPassword, AccountType)
+		VALUES (@Username, @FirstName, @LastName, @Email, CONVERT(VARCHAR(20), HASHBYTES('SHA1', @Password), 1), 'U')
+        
+
+
 
 	INSERT INTO [Address] (UserName, AddressLine1, AddressLine2, AddressLine3, City, Region, PostCode)
 	VALUES (@Username, @AddressLine1, @AddressLine2, @AddressLine3, @City, @Region, @PostCode)
+END
 RETURN
