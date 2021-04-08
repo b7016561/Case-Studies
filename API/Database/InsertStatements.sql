@@ -2,7 +2,7 @@
 GO
 -- User Table Insert
 INSERT INTO  [dbo].[User] ([UserName], [FirstName], [LastName], [Email], [UserPassword], [AccountType])
-VALUES ('jsmith248', 'John', 'Smith', 'jsmith248@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password!'), 1), 'U'),
+VALUES ('jsmith248', 'John', 'Smith', 'jsmith248@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password1'), 1), 'U'),
 ('ldavies043', 'Lisa', 'Davies', 'ldavies043@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password2'), 1), 'U'),
 ('ashaw639', 'Aaron', 'Shaw', 'ashaw639@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password3'), 1), 'E'),
 ('djones517', 'Drew', 'Jones', 'djones517@gmail.com', CONVERT(VARCHAR(20), HASHBYTES('SHA1', 'Password4'), 1), 'S')
